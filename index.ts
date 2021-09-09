@@ -1,6 +1,8 @@
 "use strict";
 
 const express = require("express");
+const pgp = require("pg-promise")(/* options */);
+const pg = pgp("postgres://postgres:mysecretpassword@postgres:5432/boards");
 
 // Constants
 const PORT = 3000;
@@ -15,3 +17,11 @@ app.get("/", (req, res) => {
 app.listen(PORT, HOST);
 
 console.log(`Running on http://${HOST}:${PORT}`);
+
+pg.one("SELECT $1 AS value", 123)
+  .then(function (data) {
+    console.log("DATA:", data.value);
+  })
+  .catch(function (error) {
+    console.log("ERROR:", error);
+  });
