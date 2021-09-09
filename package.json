@@ -1,0 +1,19 @@
+{
+  "name": "maniacforum2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npx node index.ts"
+  },
+  "keywords": [],
+  "author": "Marius Tippkämper",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg-promise": "^10.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.13"
+  }
+}
