@@ -24,3 +24,9 @@
 - dump all dbs:
   `` docker exec -t postgres pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql ``
 - load from dump: `cat your_dump.sql | docker exec -i postgres psql -U postgres`
+
+#### PGAdmin
+
+- `localhost:5050`
+- `admin@admin.com`
+- `root`
