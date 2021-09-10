@@ -15,12 +15,12 @@
 
 #### Postgres
 
-- creates empty db 'boards' on startup if there is none already
+- creates empty db 'maniacforum2' on startup if there is none already
 
 ### Accessing postgres db
 
 - `docker exec -ti postgres psql -U postgres` to bash into postgres container as user `postgres`
-- `psql -U postgres boards` to access database 'boards'
+- `psql -U postgres maniacforum2` to access database 'maniacforum2'
 - dump all dbs:
   `` docker exec -t postgres pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql ``
 - load from dump: `cat your_dump.sql | docker exec -i postgres psql -U postgres`

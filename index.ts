@@ -2,7 +2,9 @@
 
 const express = require("express");
 const pgp = require("pg-promise")(/* options */);
-const pg = pgp("postgres://postgres:mysecretpassword@postgres:5432/boards");
+const pg = pgp(
+  "postgres://postgres:mysecretpassword@postgres:5432/maniacforum2"
+);
 
 // Constants
 const PORT = 3000;
