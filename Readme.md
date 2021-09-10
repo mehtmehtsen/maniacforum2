@@ -30,3 +30,4 @@
 - `localhost:5050`
 - `admin@admin.com`
 - `root`
+- copy backup dump from pgadmin container: `docker cp pgadmin:/var/lib/pgadmin/storage/admin_admin.com/mehtsdump ~/mehtsdump`
