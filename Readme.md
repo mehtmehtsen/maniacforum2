@@ -19,5 +19,8 @@
 
 ### Accessing postgres db
 
-`docker exec -ti postgres sh` to bash into postgres container
-`psql -U postgres boards` to access database 'boards'
+- `docker exec -ti postgres sh` to bash into postgres container
+- `docker exec -ti postgres psql -U postgres` to bash into postgres container as user `postgres`
+- `psql -U postgres boards` to access database 'boards'
+- dump all dbs:
+  `` docker exec -t postgres pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql ``
