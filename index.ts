@@ -20,9 +20,9 @@ app.listen(PORT, HOST);
 
 console.log(`Running on http://${HOST}:${PORT}`);
 
-pg.one("SELECT $1 AS value", 123)
+pg.many("SELECT * FROM boards")
   .then(function (data) {
-    console.log("DATA:", data.value);
+    console.log("DATA:", data);
   })
   .catch(function (error) {
     console.log("ERROR:", error);
