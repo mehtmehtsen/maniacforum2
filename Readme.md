@@ -2,6 +2,10 @@
 
 ## Notes
 
+### Database model
+
+[dbdiagram.io](https://dbdiagram.io/d/613b3b03825b5b0146fc398d)
+
 ### State
 
 #### FE
