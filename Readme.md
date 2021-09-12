@@ -4,7 +4,11 @@
 
 ### Database model
 
-[dbdiagram.io](https://dbdiagram.io/d/613b3b03825b5b0146fc398d)
+- enter pgadmin
+- tools -> storage manager
+- upload `/maniacforum2.pgerd`
+- tools -> new erd project
+- load `/maniacforum2.pgerd`
 
 ### State
 
