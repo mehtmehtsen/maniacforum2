@@ -4,7 +4,7 @@
 
 ### Database model
 
-- enter pgadmin
+- enter pgadmin (see PGAdmin)
 - tools -> storage manager
 - upload `/maniacforum2.pgerd`
 - tools -> new erd project
