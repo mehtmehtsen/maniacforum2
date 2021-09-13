@@ -18,10 +18,12 @@ app.get("/", (req, res) => {
   pg.many("SELECT * FROM boards")
     .then((data) => {
       const out = JSON.stringify(data);
+      console.log(out);
       res.json(out);
     })
     .catch((error) => {
       const out = JSON.stringify(error);
+      console.log(out);
       res.json(out);
     });
 });
