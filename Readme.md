@@ -10,11 +10,18 @@
 - tools -> new erd project
 - load `/maniacforum2.pgerd`
 
+### Docker
+
+- `docker build -t maniacforum2 .`
+- `docker tag maniacforum2 mehtmehtsen/maniacforum2:v1`
+- `docker login -u "mehtmehtsen" -p "MEHTSPASSWORD" docker.io`
+- `docker push mehtmehtsen/maniacforum2:v1`
+
 ### State
 
 #### FE
 
-- there is none
+- fresh angular project
 
 #### BE (api)
 
