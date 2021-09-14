@@ -6,15 +6,8 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"BoardResponse": {
-				"properties": {
-					"message": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"message"
-				],
+			"BoardsResponse": {
+				"properties": {},
 				"type": "object",
 				"additionalProperties": false
 			}
@@ -42,7 +35,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/BoardResponse"
+									"$ref": "#/components/schemas/BoardsResponse"
 								}
 							}
 						}
