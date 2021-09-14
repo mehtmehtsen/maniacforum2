@@ -93,3 +93,14 @@ INSERT INTO boards VALUES (DEFAULT, 'OT');
 INSERT INTO boards VALUES (DEFAULT, 'Filme & Serien');
 INSERT INTO boards VALUES (DEFAULT, 'Corona');
 INSERT INTO boards VALUES (DEFAULT, 'Online');
+
+-- create some threads
+---- ot
+INSERT INTO threads VALUES (4, DEFAULT, 'Dinge, die ihr schon immer mal erklärt haben wolltet');
+INSERT INTO threads VALUES (4, DEFAULT, 'Was ich noch sagen wollte');
+INSERT INTO threads VALUES (4, DEFAULT, 'Wie Schuppen von den Augen');
+---- smalltalk
+INSERT INTO threads VALUES (1, DEFAULT, 'YouTube etc empfehlenswerte Videogamefilmchen');
+INSERT INTO threads VALUES (1, DEFAULT, 'Ich zocke gerade');
+INSERT INTO threads VALUES (1, DEFAULT, 'Ori [XONE/PC/SWI]');
+INSERT INTO threads VALUES (1, DEFAULT, 'Hades - Diablo/Rogue-like in der griechischen Unterwelt');
