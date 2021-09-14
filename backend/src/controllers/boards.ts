@@ -12,11 +12,11 @@ interface BoardsResponse extends Array<BoardResponse> {}
 export default class BoardsController {
   @Get("/")
   public async getMessage(): Promise<BoardsResponse> {
-    let out = [{ id: -1, title: "wat" }];
+    let out: BoardsResponse;
     await pg
       .many("SELECT * FROM boards")
-      .then((data) => (out = data))
-      .catch((error) => (out = error));
+      .then((data: BoardsResponse) => (out = data))
+      .catch((error) => console.error(error));
     return out;
   }
 }
