@@ -6,7 +6,7 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"PingResponse": {
+			"BoardResponse": {
 				"properties": {
 					"message": {
 						"type": "string"
@@ -33,7 +33,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/ping": {
+		"/boards": {
 			"get": {
 				"operationId": "GetMessage",
 				"responses": {
@@ -42,7 +42,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/PingResponse"
+									"$ref": "#/components/schemas/BoardResponse"
 								}
 							}
 						}
