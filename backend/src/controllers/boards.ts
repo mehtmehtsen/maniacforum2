@@ -1,21 +1,19 @@
 import { Get, Route } from "tsoa";
-import { pgp, pg } from "../postgresService";
+import { pg } from "../postgresService";
 
 interface BoardResponse {
   id: number;
   title: string;
 }
 
-interface BoardsResponse extends Array<BoardResponse> {}
-
 @Route("boards")
 export default class BoardsController {
   @Get("/")
-  public async getMessage(): Promise<BoardsResponse> {
-    let out: BoardsResponse;
+  public async getMessage(): Promise<Array<BoardResponse>> {
+    let out: Array<BoardResponse>;
     await pg
       .many("SELECT * FROM boards")
-      .then((data: BoardsResponse) => (out = data))
+      .then((data: Array<BoardResponse>) => (out = data))
       .catch((error) => console.error(error));
     return out;
   }

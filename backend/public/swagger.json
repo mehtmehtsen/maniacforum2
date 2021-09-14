@@ -6,8 +6,20 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"BoardsResponse": {
-				"properties": {},
+			"BoardResponse": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"title": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"title"
+				],
 				"type": "object",
 				"additionalProperties": false
 			}
@@ -35,7 +47,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/BoardsResponse"
+									"items": {
+										"$ref": "#/components/schemas/BoardResponse"
+									},
+									"type": "array"
 								}
 							}
 						}
