@@ -2,6 +2,7 @@ FROM node:14
 WORKDIR /usr/src/app/backend
 COPY package*.json ./
 RUN npm install
-COPY *.ts tsconfig.json ./
+RUN npm i -g tsoa concurrently
+COPY *.ts *.json ./
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
