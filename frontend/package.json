@@ -6,7 +6,8 @@
     "start": "ng serve --host=0.0.0.0 --port 4200",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "generate-api": "npx ng-openapi-gen --input ../backend/public/swagger.json --output ./src/app/services/api"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +35,8 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ng-openapi-gen": "^0.17.3",
+    "npx": "^10.2.2",
     "typescript": "~4.3.5"
   }
 }
