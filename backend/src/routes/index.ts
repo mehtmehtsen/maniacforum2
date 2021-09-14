@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/boards", async (_req, res) => {
   const controller = new BoardsController();
-  const response = await controller.getMessage();
+  const response = await controller.getBoards();
   return res.send(response);
 });
 

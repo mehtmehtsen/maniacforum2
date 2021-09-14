@@ -9,8 +9,8 @@ interface BoardResponse {
 @Route("boards")
 export default class BoardsController {
   @Get("/")
-  public async getMessage(): Promise<Array<BoardResponse>> {
-    let out: Array<BoardResponse>;
+  public async getBoards(): Promise<Array<BoardResponse>> {
+    let out: Array<BoardResponse> = [];
     await pg
       .many("SELECT * FROM boards")
       .then((data: Array<BoardResponse>) => (out = data))

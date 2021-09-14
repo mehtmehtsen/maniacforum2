@@ -40,7 +40,7 @@
 	"paths": {
 		"/boards": {
 			"get": {
-				"operationId": "GetMessage",
+				"operationId": "GetBoards",
 				"responses": {
 					"200": {
 						"description": "Ok",
