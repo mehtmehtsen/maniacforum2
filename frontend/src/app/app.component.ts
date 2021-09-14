@@ -17,4 +17,11 @@ export class AppComponent implements OnInit {
       this.boards = r;
     });
   }
+
+  loadBoard(id: number) {
+    console.log('%c ', 'background: #222;', id);
+    this.apiService.getThreads({ boardId: id }).subscribe((r) => {
+      console.log(r);
+    });
+  }
 }
