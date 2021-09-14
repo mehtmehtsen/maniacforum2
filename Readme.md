@@ -1,8 +1,6 @@
 # ManiacForum2
 
-## Notes
-
-### Database model
+## Database model
 
 - enter pgadmin (see PGAdmin)
 - tools -> storage manager
@@ -10,29 +8,46 @@
 - tools -> new erd project
 - load `/maniacforum2.pgerd`
 
-### Docker
+## Docker
 
-- `docker build -t maniacforum2 .`
-- `docker tag maniacforum2 mehtmehtsen/maniacforum2:v1`
-- `docker login -u "mehtmehtsen" -p "MEHTSPASSWORD" docker.io`
-- `docker push mehtmehtsen/maniacforum2:v1`
+- `docker-compose up`
 
-### State
+## State
 
-#### FE
+### FE
 
 - fresh angular project
 
-#### BE (api)
+### BE
 
 - opens http server (express) on localhost:3000
-- connects to postgres, mock db request
+- stub API for `/ping`
+- swagger ui on `/docs`
 
-#### Postgres
+### Postgres
 
 - creates empty db 'maniacforum2' on startup if there is none already
 
-### Accessing postgres db
+#### setting up DB after first time run or losing containers
+
+- access PGAdmin (see below)
+- add new server
+- name: maniacserver
+- choose tab 'connection'
+- host: postgres
+- username: postgres
+- password: mysecretpassword
+- check save password
+- click save
+- rightclick 'maniacforum2'
+- click Query Tool
+- copy contents of `./initial_db_setup.sql`
+- paste into Query Tool
+- click play button in toolbar (will create tables 'boards' with content and 'msgs', 'threads', 'users')
+- rightclick 'maniacforum2' -> refresh
+- tables are in maniacforum2/schemas/tables
+
+## Accessing postgres db
 
 - `docker exec -ti postgres psql -U postgres` to bash into postgres container as user `postgres`
 - `psql -U postgres maniacforum2` to access database 'maniacforum2'
@@ -40,7 +55,7 @@
   `` docker exec -t postgres pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql ``
 - load from dump: `cat your_dump.sql | docker exec -i postgres psql -U postgres`
 
-#### PGAdmin
+## PGAdmin
 
 - `localhost:5050`
 - `admin@admin.com`
