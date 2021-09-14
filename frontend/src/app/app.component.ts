@@ -8,7 +8,6 @@ import { ApiService } from './services/api/services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'maniacforum2';
   boards: Array<BoardResponse> = [];
 
   constructor(private apiService: ApiService) {}
