@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
-import Router from "./routes";
+import { RegisterRoutes } from "./routes/routes";
 import cors from "cors";
 
 const PORT = 3000; // process.env.PORT || 3000;
@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.use(Router);
+RegisterRoutes(app);
 
 app.listen(PORT, HOST, () => {
   console.log("Server is running on port", PORT);

@@ -7,7 +7,7 @@ interface BoardResponse {
 }
 
 @Route("boards")
-export default class BoardsController {
+export class BoardsController {
   @Get("/")
   public async getBoards(): Promise<Array<BoardResponse>> {
     let out: Array<BoardResponse> = [];
