@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardResponse } from './services/api/models';
+import { BoardResponse, ThreadResponse } from './services/api/models';
 import { ApiService } from './services/api/services';
 
 @Component({
@@ -9,6 +9,7 @@ import { ApiService } from './services/api/services';
 })
 export class AppComponent implements OnInit {
   boards: Array<BoardResponse> = [];
+  threads: Array<ThreadResponse> = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -19,9 +20,12 @@ export class AppComponent implements OnInit {
   }
 
   loadBoard(id: number) {
-    console.log('%c ', 'background: #222;', id);
     this.apiService.getThreads({ boardId: id }).subscribe((r) => {
-      console.log(r);
+      this.threads = r;
     });
+  }
+
+  loadThread(id: number) {
+    console.log(id);
   }
 }

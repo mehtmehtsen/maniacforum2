@@ -1,5 +1,11 @@
-<div class="boards">
+<div id="boards">
   <div class="board" *ngFor="let board of boards" (click)="loadBoard(board.id)">
     {{board.title}}
+  </div>
+</div>
+<p></p>
+<div id="threads">
+  <div class="thread" *ngFor="let thread of threads" (click)="loadThread(thread.id)">
+    {{thread.title}}
   </div>
 </div>
