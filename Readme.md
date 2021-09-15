@@ -62,6 +62,11 @@
 - `root`
 - copy backup dump from pgadmin container: `docker cp pgadmin:/var/lib/pgadmin/storage/admin_admin.com/mehtsdump ~/mehtsdump`
 
+## Generating tsoa routes
+
+- `cd backend`
+- `npx tsoa routes`
+
 ## Generating API service
 
 - ensure containers are up
