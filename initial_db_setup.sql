@@ -3,7 +3,6 @@
 BEGIN;
 
 
--- create tables
 CREATE TABLE IF NOT EXISTS public.users
 (
     id serial NOT NULL,
@@ -50,10 +49,11 @@ CREATE TABLE IF NOT EXISTS public.msgs
     parent_id integer,
     parent_user_id integer,
     "timestamp" timestamp without time zone NOT NULL,
+    title character varying(128) NOT NULL,
+    body text,
     PRIMARY KEY (id)
 );
 
--- create references
 ALTER TABLE public.threads
     ADD FOREIGN KEY (board_id)
     REFERENCES public.boards (id)
