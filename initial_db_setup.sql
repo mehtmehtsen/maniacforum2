@@ -6,101 +6,113 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.users
 (
     id serial NOT NULL,
-    username character varying NOT NULL,
-    password character varying NOT NULL,
-    firstname character varying,
-    lastname character varying,
-    email character varying NOT NULL,
+    username character varying(64) NOT NULL,
+    password character varying(64) NOT NULL,
+    firstname character varying(64),
+    lastname character varying(64),
+    email character varying(64) NOT NULL,
     showname boolean,
-    residence character varying,
-    homepage character varying,
-    firstgame character varying,
+    residence character varying(128),
+    homepage character varying(128),
+    firstgame character varying(128),
     genres text,
     systems text,
     classics text,
     hobbies text,
-    id_xbox character varying,
-    id_ps character varying,
-    id_nintendo character varying,
+    "idXbox" character varying(64),
+    "idPs" character varying(64),
+    "idNintendo" character varying(64),
     image character varying,
+    "registrationTimestamp" timestamp without time zone NOT NULL,
+    "modForBoards" integer[],
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.boards
 (
     id serial NOT NULL,
-    title character varying NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.threads
-(
-    board_id integer NOT NULL,
-    id serial NOT NULL,
-    title character varying,
+    name character varying(64) NOT NULL,
+    topic text,
+    "lastMessage" timestamp without time zone,
+    mods integer[],
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.msgs
 (
-    thread_id integer NOT NULL,
+    "boardId" integer NOT NULL,
     id serial NOT NULL,
-    user_id integer NOT NULL,
-    parent_id integer,
-    parent_user_id integer,
+    "userId" integer NOT NULL,
+    "parentId" integer,
+    "parentUserId" integer,
     "timestamp" timestamp without time zone NOT NULL,
-    title character varying(128) NOT NULL,
+    subject character varying(128) NOT NULL,
     body text,
+    "authorMod" boolean,
     PRIMARY KEY (id)
 );
 
-ALTER TABLE public.threads
-    ADD FOREIGN KEY (board_id)
-    REFERENCES public.boards (id)
-    NOT VALID;
-
-
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY (thread_id)
-    REFERENCES public.threads (id)
-    NOT VALID;
-
-
-ALTER TABLE public.msgs
-    ADD FOREIGN KEY (parent_id)
+    ADD FOREIGN KEY ("parentId")
     REFERENCES public.msgs (id)
     NOT VALID;
 
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY (user_id)
+    ADD FOREIGN KEY ("userId")
     REFERENCES public.users (id)
     NOT VALID;
 
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY (parent_user_id)
+    ADD FOREIGN KEY ("parentUserId")
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.msgs
+    ADD FOREIGN KEY ("boardId")
+    REFERENCES public.boards (id)
     NOT VALID;
 
 END;
 
--- create boards
-INSERT INTO boards VALUES (DEFAULT, 'Smalltalk');
-INSERT INTO boards VALUES (DEFAULT, 'For Sale');
-INSERT INTO boards VALUES (DEFAULT, 'Tech''n''Cheats');
-INSERT INTO boards VALUES (DEFAULT, 'OT');
-INSERT INTO boards VALUES (DEFAULT, 'Filme & Serien');
-INSERT INTO boards VALUES (DEFAULT, 'Corona');
-INSERT INTO boards VALUES (DEFAULT, 'Online');
+-- create users
+INSERT INTO users VALUES (DEFAULT, 'mat', 'ketchup', 'Marius', 'Tippkämper', 'tippkaemper@posteo.de', FALSE, 'Bochon', 'https://www.komeht.de', 'Nibbles', 'Rogue Lite z.B.', 'Schwitz', '', '', '', '', '', '', CURRENT_TIMESTAMP, '{}');
 
--- create some threads
----- ot
-INSERT INTO threads VALUES (4, DEFAULT, 'Dinge, die ihr schon immer mal erklärt haben wolltet');
-INSERT INTO threads VALUES (4, DEFAULT, 'Was ich noch sagen wollte');
-INSERT INTO threads VALUES (4, DEFAULT, 'Wie Schuppen von den Augen');
----- smalltalk
-INSERT INTO threads VALUES (1, DEFAULT, 'YouTube etc empfehlenswerte Videogamefilmchen');
-INSERT INTO threads VALUES (1, DEFAULT, 'Ich zocke gerade');
-INSERT INTO threads VALUES (1, DEFAULT, 'Ori [XONE/PC/SWI]');
-INSERT INTO threads VALUES (1, DEFAULT, 'Hades - Diablo/Rogue-like in der griechischen Unterwelt');
+-- create boards
+INSERT INTO boards VALUES (DEFAULT, 'Smalltalk', 'Diskussionen rund um die Welt der Videospiele.', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'For Sale', 'Private Kleinanzeigen: An- und Verkauf gebrauchter Spiele', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'Tech''n''Cheats', 'Umbau-Lösungen, Anschluss-Probleme, Computerprobleme, Spielehilfen, Kaufberatung', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'OT', 'Ohne Tiefgang - der tägliche Schwachsinn', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'Filme & Serien', 'Alles wofür 24 fps reichen', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'Corona', 'Alles zum Thema Corona-Virus und Covid-19', NULL, NULL);
+INSERT INTO boards VALUES (DEFAULT, 'Online', 'Alles rund um Onlinespiele', NULL, NULL);
+
+-- create threads/msgs
+INSERT INTO msgs VALUES       (1, 1, 1, NULL, NULL, CURRENT_TIMESTAMP, 'YouTube etc empfehlenswerte Videogamefilmchen', 'Vorgänger: LINK', FALSE);
+  INSERT INTO msgs VALUES     (1, 2, 1, 1, 1, CURRENT_TIMESTAMP, 'Re: YouTube etc empfehlenswerte Videogamefilmchen', 'Ein super Youtube-Video', FALSE);
+    INSERT INTO msgs VALUES   (1, 3, 1, 2, 1, CURRENT_TIMESTAMP, 'Danke für dieses Video', 'Es gefiel.', FALSE);
+      INSERT INTO msgs VALUES (1, 4, 1, 3, 1, CURRENT_TIMESTAMP, 'Mir nicht /nt', '', FALSE);
+      INSERT INTO msgs VALUES (1, 5, 1, 3, 1, CURRENT_TIMESTAMP, 'Mir auch /nt', '', FALSE);
+  INSERT INTO msgs VALUES     (1, 6, 1, 1, 1, CURRENT_TIMESTAMP, 'Typ macht Hades-Speedrun auf dem Klo', 'Hades ist nämlich ein gutes Spiel', FALSE);
+
+INSERT INTO msgs VALUES       (1, 7, 1, NULL, NULL, CURRENT_TIMESTAMP, 'Ich zocke gerade', 'Also ich zock gerade gar nix.', FALSE);
+  INSERT INTO msgs VALUES     (1, 8, 1, 7, 1, CURRENT_TIMESTAMP, 'Hades', 'Auf dem Klo', FALSE);
+    INSERT INTO msgs VALUES   (1, 11, 1, 8, 1, CURRENT_TIMESTAMP, 'WTF', 'BIST DU DAS MIT DEM SPEEDRUN?!1elf', FALSE);
+  INSERT INTO msgs VALUES     (1, 9, 1, 7, 1, CURRENT_TIMESTAMP, 'Minesweeper', 'Ist aber nicht so gut.', FALSE);
+    INSERT INTO msgs VALUES     (1, 12, 1, 9, 1, CURRENT_TIMESTAMP, 'Find ich auch', 'LOL, natürlich ist das gut!1', FALSE);
+  INSERT INTO msgs VALUES     (1, 10, 1, 7, 1, CURRENT_TIMESTAMP, 'Diablo EINS', 'Die anderen geben mir nix. ¯\_(ツ)_/¯', FALSE);
+    INSERT INTO msgs VALUES     (1, 13, 1, 10, 1, CURRENT_TIMESTAMP, 'Re: Diablo EINS', 'Ah, a man of culture!', FALSE);
+
+
+-- -- create some threads
+-- ---- smalltalk
+-- INSERT INTO threads VALUES (1, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'YouTube etc empfehlenswerte Videogamefilmchen', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- INSERT INTO threads VALUES (1, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Ich zocke gerade', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- INSERT INTO threads VALUES (1, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Ori [XONE/PC/SWI]', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- INSERT INTO threads VALUES (1, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Hades - Diablo/Rogue-like in der griechischen Unterwelt', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- ---- ot
+-- INSERT INTO threads VALUES (4, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Dinge, die ihr schon immer mal erklärt haben wolltet', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- INSERT INTO threads VALUES (4, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Was ich noch sagen wollte', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
+-- INSERT INTO threads VALUES (4, DEFAULT, MSGID, false, false, AUTHORID, AUTHORNAME, false, 'Wie Schuppen von den Augen', CURRENT_TIMESTAMP, MSGID, MSGTIMESTAMP);
