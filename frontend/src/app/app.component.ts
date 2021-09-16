@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    console.log('%c getting boards', 'background: #222;');
     this.apiService.getBoards().subscribe((r) => {
-      console.log('%c theres boards', 'background: #222;', r);
       this.boards = r;
     });
   }
