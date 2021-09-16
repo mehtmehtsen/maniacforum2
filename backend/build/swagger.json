@@ -6,6 +6,23 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"Board": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"title": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"title"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Thread": {
 				"properties": {
 					"id": {
@@ -38,6 +55,28 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/boards": {
+			"get": {
+				"operationId": "GetBoards",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Board"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/threads/{boardId}": {
 			"get": {
 				"operationId": "GetThreads",

@@ -6,10 +6,10 @@ export type ThreadCreationParams = Pick<Thread, "title">;
 
 export class ThreadsService {
   public async getThreads(boardId: number): Promise<Thread[]> {
-    let out: Array<Thread> = [];
+    let out: Thread[] = [];
     await pg
       .many("SELECT * FROM threads WHERE board_id=$1", boardId)
-      .then((data: Array<Thread>) => (out = data))
+      .then((data: Thread[]) => (out = data))
       .catch((error) => console.error(error));
     console.log(boardId);
     return out;
