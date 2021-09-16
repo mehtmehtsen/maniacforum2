@@ -70,3 +70,4 @@ export class MsgsService {
       .catch((error) => console.error(error));
     return out;
   }
+}
