@@ -1,4 +1,4 @@
-export interface Msg {
+export interface Thread {
   boardId: number;
   id: number;
   userId: number;

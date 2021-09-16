@@ -6,6 +6,8 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 import { BoardsController } from './../src/boards/boardsController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { MsgsController } from './../src/msgs/msgsController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { ThreadsController } from './../src/threads/threadsController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -23,7 +25,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Thread": {
+    "Msg": {
         "dataType": "refObject",
         "properties": {
             "boardId": {"dataType":"double","required":true},
@@ -38,7 +40,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Msg": {
+    "Thread": {
         "dataType": "refObject",
         "properties": {
             "boardId": {"dataType":"double","required":true},
@@ -85,30 +87,7 @@ export function RegisterRoutes(app: express.Router) {
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/threads/:boardId',
-
-            function MsgsController_getThreads(request: any, response: any, next: any) {
-            const args = {
-                    boardId: {"in":"path","name":"boardId","required":true,"dataType":"double"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request, response);
-            } catch (err: any) {
-                return next(err);
-            }
-
-            const controller = new MsgsController();
-
-
-            const promise = controller.getThreads.apply(controller, validatedArgs as any);
-            promiseHandler(controller, promise, response, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/threads/:threadId',
+        app.get('/msgs/:threadId',
 
             function MsgsController_getMsgs(request: any, response: any, next: any) {
             const args = {
@@ -128,6 +107,29 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.getMsgs.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/threads/:boardId',
+
+            function ThreadsController_getThreads(request: any, response: any, next: any) {
+            const args = {
+                    boardId: {"in":"path","name":"boardId","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err: any) {
+                return next(err);
+            }
+
+            const controller = new ThreadsController();
+
+
+            const promise = controller.getThreads.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

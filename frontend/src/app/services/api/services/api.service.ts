@@ -68,6 +68,52 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Path part for operation getMsgs
+   */
+  static readonly GetMsgsPath = '/msgs/{threadId}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getMsgs()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getMsgs$Response(params: {
+    threadId: number;
+  }): Observable<StrictHttpResponse<Array<Msg>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgsPath, 'get');
+    if (params) {
+      rb.path('threadId', params.threadId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Msg>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getMsgs$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getMsgs(params: {
+    threadId: number;
+  }): Observable<Array<Msg>> {
+
+    return this.getMsgs$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Msg>>) => r.body as Array<Msg>)
+    );
+  }
+
+  /**
    * Path part for operation getThreads
    */
   static readonly GetThreadsPath = '/threads/{boardId}';
@@ -110,52 +156,6 @@ export class ApiService extends BaseService {
 
     return this.getThreads$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Thread>>) => r.body as Array<Thread>)
-    );
-  }
-
-  /**
-   * Path part for operation getMsgs
-   */
-  static readonly GetMsgsPath = '/threads/{threadId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getMsgs()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getMsgs$Response(params: {
-    threadId: number;
-  }): Observable<StrictHttpResponse<Array<Msg>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgsPath, 'get');
-    if (params) {
-      rb.path('threadId', params.threadId, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Msg>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getMsgs$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getMsgs(params: {
-    threadId: number;
-  }): Observable<Array<Msg>> {
-
-    return this.getMsgs$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<Msg>>) => r.body as Array<Msg>)
     );
   }
 

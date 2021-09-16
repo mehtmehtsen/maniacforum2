@@ -1,4 +1,4 @@
-import { Thread, Msg } from "./msg";
+import { Msg } from "./msg";
 import { pg } from "../postgresService";
 
 // A post request should not contain an id.
@@ -14,19 +14,6 @@ import { pg } from "../postgresService";
 // >;
 
 export class MsgsService {
-  public async getThreads(boardId: number): Promise<Thread[]> {
-    let out: Thread[] = [];
-    await pg
-      .many(
-        "SELECT * FROM msgs WHERE parent_id IS NULL AND board_id=$1;",
-        boardId
-      )
-      .then((data: Thread[]) => (out = data))
-      .catch((error) => console.error(error));
-    console.log(boardId);
-    return out;
-  }
-
   public async getMsgs(threadId: number): Promise<Msg[]> {
     let out: Msg[] = [];
     await pg
@@ -59,14 +46,14 @@ export class MsgsService {
             m.author_mod
           FROM
             msgs m
-          INNER JOIN msgtree t ON t.id = m.parent_id
+          INNER JOIN msgtree t ON m.parent_id = t.id
         ) SELECT
           *
         FROM
           msgtree;`,
         threadId
       )
-      .then((data: Thread[]) => (out = data))
+      .then((data: Msg[]) => (out = data))
       .catch((error) => console.error(error));
     return out;
   }
