@@ -38,6 +38,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Msg": {
+        "dataType": "refObject",
+        "properties": {
+            "boardId": {"dataType":"double","required":true},
+            "id": {"dataType":"double","required":true},
+            "userId": {"dataType":"double","required":true},
+            "parentId": {"dataType":"double","required":true},
+            "parentUserId": {"dataType":"double","required":true},
+            "timestamp": {"dataType":"string","required":true},
+            "subject": {"dataType":"string","required":true},
+            "body": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -90,6 +105,29 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.getThreads.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/threads/:threadId',
+
+            function MsgsController_getMsgs(request: any, response: any, next: any) {
+            const args = {
+                    threadId: {"in":"path","name":"threadId","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err: any) {
+                return next(err);
+            }
+
+            const controller = new MsgsController();
+
+
+            const promise = controller.getMsgs.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

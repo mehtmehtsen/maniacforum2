@@ -17,6 +17,10 @@ export class MsgsController extends Controller {
   public async getThreads(@Path() boardId: number): Promise<Thread[]> {
     return new MsgsService().getThreads(boardId);
   }
+  @Get("{threadId}")
+  public async getMsgs(@Path() threadId: number): Promise<Msg[]> {
+    return new MsgsService().getMsgs(threadId);
+  }
 
   // @SuccessResponse("201", "Created") // Custom success response
   // @Post()

@@ -27,44 +27,46 @@ export class MsgsService {
     return out;
   }
 
-  // public async getMsgs(threadId: number): Promise<Msg[]> {
-  //   let out: Msg[] = [];
-  //   await pg
-  //     .many(
-  //       `WITH RECURSIVE msgtree AS (
-  //       SELECT
-  //         threadId,
-  //         id,
-  //         userId,
-  //         parentId,
-  //         timestamp
-  //         title,
-  //         body
-  //       FROM
-  //         msgs
-  //       WHERE
-  //         threadId = $1
-  //       UNION
-  //         SELECT
-  //           m.threadId,
-  //           m.id,
-  //           m.userId,
-  //           m.parentId,
-  //           m.timestamp
-  //           m.title,
-  //           m.body
-  //         FROM
-  //           msgs m
-  //         INNER JOIN msgtree t ON m.parentId = t.id
-  //     ) SELECT
-  //       *
-  //     FROM
-  //       msgs;`,
-  //       threadId
-  //     )
-  //     .then((data: Msg[]) => (out = data))
-  //     .catch((error) => console.error(error));
-  //   console.log(threadId);
-  //   return out;
-  // }
-}
+  public async getMsgs(threadId: number): Promise<Msg[]> {
+    let out: Msg[] = [];
+    await pg
+      .many(
+        `WITH RECURSIVE msgtree AS (
+          SELECT
+            board_id,
+            id,
+            user_id,
+            parent_id,
+            parent_user_id,
+            timestamp,
+            subject,
+            body,
+            author_mod
+          FROM
+            msgs
+          WHERE
+            id = $1 
+          UNION
+          SELECT
+            m.board_id,
+            m.id,
+            m.user_id,
+            m.parent_id,
+            m.parent_user_id,
+            m.timestamp,
+            m.subject,
+            m.body,
+            m.author_mod
+          FROM
+            msgs m
+          INNER JOIN msgtree t ON t.id = m.parent_id
+        ) SELECT
+          *
+        FROM
+          msgtree;`,
+        threadId
+      )
+      .then((data: Thread[]) => (out = data))
+      .catch((error) => console.error(error));
+    return out;
+  }

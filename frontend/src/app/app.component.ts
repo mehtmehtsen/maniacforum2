@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Board, Thread } from './services/api/models';
+import { Board, Msg, Thread } from './services/api/models';
 import { ApiService } from './services/api/services';
 
 @Component({
@@ -10,6 +10,7 @@ import { ApiService } from './services/api/services';
 export class AppComponent implements OnInit {
   boards: Array<Board> = [];
   threads: Array<Thread> = [];
+  msgs: Array<Msg> = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -26,6 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   loadThread(id: number) {
-    console.log(id);
+    this.apiService.getMsgs({ threadId: id }).subscribe((r) => {
+      this.msgs = r;
+      console.log(this.msgs);
+    });
   }
 }

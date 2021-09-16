@@ -83,6 +83,51 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Msg": {
+				"properties": {
+					"boardId": {
+						"type": "number",
+						"format": "double"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"parentId": {
+						"type": "number",
+						"format": "double"
+					},
+					"parentUserId": {
+						"type": "number",
+						"format": "double"
+					},
+					"timestamp": {
+						"type": "string"
+					},
+					"subject": {
+						"type": "string"
+					},
+					"body": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"boardId",
+					"id",
+					"userId",
+					"parentId",
+					"parentUserId",
+					"timestamp",
+					"subject",
+					"body"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -144,6 +189,38 @@
 					{
 						"in": "path",
 						"name": "boardId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/threads/{threadId}": {
+			"get": {
+				"operationId": "GetMsgs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Msg"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "threadId",
 						"required": true,
 						"schema": {
 							"format": "double",
