@@ -6,7 +6,7 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"BoardResponse": {
+			"Thread": {
 				"properties": {
 					"id": {
 						"type": "number",
@@ -23,22 +23,20 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ThreadResponse": {
+			"Pick_Thread.title_": {
 				"properties": {
-					"id": {
-						"type": "number",
-						"format": "double"
-					},
 					"title": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"id",
 					"title"
 				],
 				"type": "object",
-				"additionalProperties": false
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"ThreadCreationParams": {
+				"$ref": "#/components/schemas/Pick_Thread.title_"
 			}
 		},
 		"securitySchemes": {}
@@ -55,28 +53,6 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/boards": {
-			"get": {
-				"operationId": "GetBoards",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/BoardResponse"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/threads/{boardId}": {
 			"get": {
 				"operationId": "GetThreads",
@@ -86,10 +62,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/ThreadResponse"
-									},
-									"type": "array"
+									"$ref": "#/components/schemas/Thread"
 								}
 							}
 						}
@@ -107,6 +80,28 @@
 						}
 					}
 				]
+			}
+		},
+		"/threads": {
+			"post": {
+				"operationId": "CreateThread",
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ThreadCreationParams"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

@@ -2,14 +2,14 @@
   "name": "maniacforum2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "build/src/server.js",
   "scripts": {
-    "start": "node build/index.js",
     "predev": "npm run swagger",
     "prebuild": "npm run swagger",
-    "build": "tsc",
-    "dev": "concurrently \"nodemon build/index.js localhost 3000\" \"nodemon -x tsoa spec\"",
-    "swagger": "tsoa spec"
+    "build": "tsoa spec-and-routes",
+    "dev": "concurrently \"nodemon build/server.js localhost 3000\" \"nodemon -x tsoa spec-and-routes\"",
+    "swagger": "tsoa spec",
+    "start": "node build/src/server.js"
   },
   "nodemonConfig": {
     "watch": [

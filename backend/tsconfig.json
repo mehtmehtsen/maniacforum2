@@ -1,21 +1,37 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compilerOptions": {
+    /* Basic Options */
+    "incremental": true,
     "target": "es6",
     "module": "commonjs",
-    "outDir": "./build",
+    "outDir": "build",
+
+    /* Strict Type-Checking Options */
     "strict": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
+
+    /* Module Resolution Options */
     "moduleResolution": "node",
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true
+    "baseUrl": ".",
+    "esModuleInterop": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true
   }
 }
