@@ -2,5 +2,8 @@
 /* eslint-disable */
 export interface Board {
   id: number;
-  title: string;
+  lastMessage: string;
+  mods: Array<number>;
+  name: string;
+  topic: string;
 }

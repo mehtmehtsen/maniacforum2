@@ -12,19 +12,39 @@
 						"type": "number",
 						"format": "double"
 					},
-					"title": {
+					"name": {
 						"type": "string"
+					},
+					"topic": {
+						"type": "string"
+					},
+					"lastMessage": {
+						"type": "string"
+					},
+					"mods": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
 					"id",
-					"title"
+					"name",
+					"topic",
+					"lastMessage",
+					"mods"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
 			"Thread": {
 				"properties": {
+					"boardId": {
+						"type": "number",
+						"format": "double"
+					},
 					"id": {
 						"type": "number",
 						"format": "double"
@@ -44,17 +64,22 @@
 					"timestamp": {
 						"type": "string"
 					},
-					"authorMod": {
-						"type": "boolean"
+					"subject": {
+						"type": "string"
+					},
+					"body": {
+						"type": "string"
 					}
 				},
 				"required": [
+					"boardId",
 					"id",
 					"userId",
 					"parentId",
 					"parentUserId",
 					"timestamp",
-					"authorMod"
+					"subject",
+					"body"
 				],
 				"type": "object",
 				"additionalProperties": false

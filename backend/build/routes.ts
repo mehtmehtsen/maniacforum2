@@ -15,7 +15,10 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
-            "title": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "topic": {"dataType":"string","required":true},
+            "lastMessage": {"dataType":"string","required":true},
+            "mods": {"dataType":"array","array":{"dataType":"double"},"required":true},
         },
         "additionalProperties": false,
     },
@@ -23,12 +26,14 @@ const models: TsoaRoute.Models = {
     "Thread": {
         "dataType": "refObject",
         "properties": {
+            "boardId": {"dataType":"double","required":true},
             "id": {"dataType":"double","required":true},
             "userId": {"dataType":"double","required":true},
             "parentId": {"dataType":"double","required":true},
             "parentUserId": {"dataType":"double","required":true},
             "timestamp": {"dataType":"string","required":true},
-            "authorMod": {"dataType":"boolean","required":true},
+            "subject": {"dataType":"string","required":true},
+            "body": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },

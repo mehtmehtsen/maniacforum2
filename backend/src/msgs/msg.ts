@@ -1,19 +1,21 @@
 export interface Thread {
+  boardId: number;
   id: number;
   userId: number;
   parentId: number;
   parentUserId: number;
   timestamp: string;
-  authorMod: boolean;
+  subject: string;
+  body: string;
 }
 
 export interface Msg {
-  threadId: number;
+  boardId: number;
   id: number;
   userId: number;
   parentId: number;
-  parent_userId: number;
+  parentUserId: number;
   timestamp: string;
-  title: string;
+  subject: string;
   body: string;
 }

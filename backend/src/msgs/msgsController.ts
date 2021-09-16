@@ -9,7 +9,7 @@ import {
   SuccessResponse,
 } from "tsoa";
 import { Thread, Msg } from "./msg";
-import { MsgsService, MsgCreationParams } from "./msgsService";
+import { MsgsService } from "./msgsService";
 
 @Route("threads")
 export class MsgsController extends Controller {

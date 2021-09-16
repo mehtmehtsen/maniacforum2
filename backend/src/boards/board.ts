@@ -1,4 +1,7 @@
 export interface Board {
   id: number;
-  title: string;
+  name: string;
+  topic: string;
+  lastMessage: string;
+  mods: number[];
 }

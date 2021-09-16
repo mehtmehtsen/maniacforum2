@@ -1,10 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Thread {
-  authorMod: boolean;
+  boardId: number;
+  body: string;
   id: number;
   parentId: number;
   parentUserId: number;
+  subject: string;
   timestamp: string;
   userId: number;
 }

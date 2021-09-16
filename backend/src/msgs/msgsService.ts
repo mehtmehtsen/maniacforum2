@@ -2,16 +2,16 @@ import { Thread, Msg } from "./msg";
 import { pg } from "../postgresService";
 
 // A post request should not contain an id.
-export type MsgCreationParams = Pick<
-  Msg,
-  | "threadId"
-  | "userId"
-  | "parentId"
-  | "parent_userId"
-  | "timestamp"
-  | "title"
-  | "body"
->;
+// export type MsgCreationParams = Pick<
+//   Msg,
+//   | "threadId"
+//   | "userId"
+//   | "parentId"
+//   | "parent_userId"
+//   | "timestamp"
+//   | "title"
+//   | "body"
+// >;
 
 export class MsgsService {
   public async getThreads(boardId: number): Promise<Thread[]> {
