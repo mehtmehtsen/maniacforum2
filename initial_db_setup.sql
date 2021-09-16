@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS public.users
     systems text,
     classics text,
     hobbies text,
-    "idXbox" character varying(64),
-    "idPs" character varying(64),
-    "idNintendo" character varying(64),
+    id_xbox character varying(64),
+    id_ps character varying(64),
+    id_nintendo character varying(64),
     image character varying,
-    "registrationTimestamp" timestamp without time zone NOT NULL,
-    "modForBoards" integer[],
+    registration_timestamp timestamp without time zone NOT NULL,
+    mod_for_boards integer[],
     PRIMARY KEY (id)
 );
 
@@ -33,45 +33,45 @@ CREATE TABLE IF NOT EXISTS public.boards
     id serial NOT NULL,
     name character varying(64) NOT NULL,
     topic text,
-    "lastMessage" timestamp without time zone,
+    last_message timestamp without time zone,
     mods integer[],
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.msgs
 (
-    "boardId" integer NOT NULL,
+    board_id integer NOT NULL,
     id serial NOT NULL,
-    "userId" integer NOT NULL,
-    "parentId" integer,
-    "parentUserId" integer,
+    user_id integer NOT NULL,
+    parent_id integer,
+    parent_user_id integer,
     "timestamp" timestamp without time zone NOT NULL,
     subject character varying(128) NOT NULL,
     body text,
-    "authorMod" boolean,
+    author_mod boolean,
     PRIMARY KEY (id)
 );
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY ("parentId")
+    ADD FOREIGN KEY (parent_id)
     REFERENCES public.msgs (id)
     NOT VALID;
 
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY ("userId")
+    ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
     NOT VALID;
 
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY ("parentUserId")
+    ADD FOREIGN KEY (parent_user_id)
     REFERENCES public.users (id)
     NOT VALID;
 
 
 ALTER TABLE public.msgs
-    ADD FOREIGN KEY ("boardId")
+    ADD FOREIGN KEY (board_id)
     REFERENCES public.boards (id)
     NOT VALID;
 
