@@ -9,8 +9,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { BoardResponse } from '../models/board-response';
-import { ThreadResponse } from '../models/thread-response';
+import { Board } from '../models/board';
+import { Thread } from '../models/thread';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class ApiService extends BaseService {
    * This method doesn't expect any request body.
    */
   getBoards$Response(params?: {
-  }): Observable<StrictHttpResponse<Array<BoardResponse>>> {
+  }): Observable<StrictHttpResponse<Array<Board>>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApiService.GetBoardsPath, 'get');
     if (params) {
@@ -47,7 +47,7 @@ export class ApiService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<BoardResponse>>;
+        return r as StrictHttpResponse<Array<Board>>;
       })
     );
   }
@@ -59,10 +59,10 @@ export class ApiService extends BaseService {
    * This method doesn't expect any request body.
    */
   getBoards(params?: {
-  }): Observable<Array<BoardResponse>> {
+  }): Observable<Array<Board>> {
 
     return this.getBoards$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<BoardResponse>>) => r.body as Array<BoardResponse>)
+      map((r: StrictHttpResponse<Array<Board>>) => r.body as Array<Board>)
     );
   }
 
@@ -79,7 +79,7 @@ export class ApiService extends BaseService {
    */
   getThreads$Response(params: {
     boardId: number;
-  }): Observable<StrictHttpResponse<Array<ThreadResponse>>> {
+  }): Observable<StrictHttpResponse<Array<Thread>>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApiService.GetThreadsPath, 'get');
     if (params) {
@@ -92,7 +92,7 @@ export class ApiService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<ThreadResponse>>;
+        return r as StrictHttpResponse<Array<Thread>>;
       })
     );
   }
@@ -105,10 +105,10 @@ export class ApiService extends BaseService {
    */
   getThreads(params: {
     boardId: number;
-  }): Observable<Array<ThreadResponse>> {
+  }): Observable<Array<Thread>> {
 
     return this.getThreads$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<ThreadResponse>>) => r.body as Array<ThreadResponse>)
+      map((r: StrictHttpResponse<Array<Thread>>) => r.body as Array<Thread>)
     );
   }
 

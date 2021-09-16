@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardResponse, ThreadResponse } from './services/api/models';
+import { Board, Thread } from './services/api/models';
 import { ApiService } from './services/api/services';
 
 @Component({
@@ -8,8 +8,8 @@ import { ApiService } from './services/api/services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  boards: Array<BoardResponse> = [];
-  threads: Array<ThreadResponse> = [];
+  boards: Array<Board> = [];
+  threads: Array<Thread> = [];
 
   constructor(private apiService: ApiService) {}
 

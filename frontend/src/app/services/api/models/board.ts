@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface BoardResponse {
+export interface Board {
   id: number;
   title: string;
 }

@@ -1,2 +1,2 @@
-export { BoardResponse } from './models/board-response';
-export { ThreadResponse } from './models/thread-response';
+export { Board } from './models/board';
+export { Thread } from './models/thread';
