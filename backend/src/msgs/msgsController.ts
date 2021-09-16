@@ -8,14 +8,14 @@ import {
   Route,
   SuccessResponse,
 } from "tsoa";
-import { Thread } from "./thread";
-import { ThreadsService, ThreadCreationParams } from "./threadsService";
+import { Thread, Msg } from "./msg";
+import { MsgsService, MsgCreationParams } from "./msgsService";
 
 @Route("threads")
-export class ThreadsController extends Controller {
+export class MsgsController extends Controller {
   @Get("{boardId}")
   public async getThreads(@Path() boardId: number): Promise<Thread[]> {
-    return new ThreadsService().getThreads(boardId);
+    return new MsgsService().getThreads(boardId);
   }
 
   // @SuccessResponse("201", "Created") // Custom success response

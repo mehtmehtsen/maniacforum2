@@ -29,13 +29,32 @@
 						"type": "number",
 						"format": "double"
 					},
-					"title": {
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"parentId": {
+						"type": "number",
+						"format": "double"
+					},
+					"parentUserId": {
+						"type": "number",
+						"format": "double"
+					},
+					"timestamp": {
 						"type": "string"
+					},
+					"authorMod": {
+						"type": "boolean"
 					}
 				},
 				"required": [
 					"id",
-					"title"
+					"userId",
+					"parentId",
+					"parentUserId",
+					"timestamp",
+					"authorMod"
 				],
 				"type": "object",
 				"additionalProperties": false

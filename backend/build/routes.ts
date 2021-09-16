@@ -5,7 +5,7 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { BoardsController } from './../src/boards/boardsController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ThreadsController } from './../src/threads/threadsController';
+import { MsgsController } from './../src/msgs/msgsController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -24,7 +24,11 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
-            "title": {"dataType":"string","required":true},
+            "userId": {"dataType":"double","required":true},
+            "parentId": {"dataType":"double","required":true},
+            "parentUserId": {"dataType":"double","required":true},
+            "timestamp": {"dataType":"string","required":true},
+            "authorMod": {"dataType":"boolean","required":true},
         },
         "additionalProperties": false,
     },
@@ -63,7 +67,7 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/threads/:boardId',
 
-            function ThreadsController_getThreads(request: any, response: any, next: any) {
+            function MsgsController_getThreads(request: any, response: any, next: any) {
             const args = {
                     boardId: {"in":"path","name":"boardId","required":true,"dataType":"double"},
             };
@@ -77,7 +81,7 @@ export function RegisterRoutes(app: express.Router) {
                 return next(err);
             }
 
-            const controller = new ThreadsController();
+            const controller = new MsgsController();
 
 
             const promise = controller.getThreads.apply(controller, validatedArgs as any);
