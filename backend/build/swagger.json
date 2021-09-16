@@ -22,21 +22,6 @@
 				],
 				"type": "object",
 				"additionalProperties": false
-			},
-			"Pick_Thread.title_": {
-				"properties": {
-					"title": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"title"
-				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"ThreadCreationParams": {
-				"$ref": "#/components/schemas/Pick_Thread.title_"
 			}
 		},
 		"securitySchemes": {}
@@ -62,7 +47,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/Thread"
+									"items": {
+										"$ref": "#/components/schemas/Thread"
+									},
+									"type": "array"
 								}
 							}
 						}
@@ -80,28 +68,6 @@
 						}
 					}
 				]
-			}
-		},
-		"/threads": {
-			"post": {
-				"operationId": "CreateThread",
-				"responses": {
-					"201": {
-						"description": "Created"
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ThreadCreationParams"
-							}
-						}
-					}
-				}
 			}
 		}
 	},
