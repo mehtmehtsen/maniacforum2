@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   loadThread(id: number) {
     this.apiService.getMsgs({ threadId: id }).subscribe((r) => {
       this.msgs = r;
-      console.log(this.msgs);
     });
   }
 }
