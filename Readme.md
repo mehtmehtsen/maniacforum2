@@ -8,6 +8,16 @@
 - tools -> new erd project
 - load `/maniacforum2.pgerd`
 
+### DB structure vs API
+
+| db     | Maniac                 | endpoints            |
+| ------ | ---------------------- | -------------------- |
+| boards | Boards                 | `/boards`            |
+| msgs   | List of Threads        | `/threads/{boardId}` |
+|        | List of Msgs in Thread | `/msgs/{threadId}`   |
+|        | Indivual msg           | `/msg/{msgId}`       |
+| users  | Individual user        | `/users/{userId}`    |
+
 ## Docker
 
 - `docker-compose up`
