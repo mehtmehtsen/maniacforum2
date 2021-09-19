@@ -1,12 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Thread {
-  boardId: number;
-  body: string;
   id: number;
-  parentId: number;
-  parentUserId: number;
+  lastMsgId: number;
+  lastMsgTimestamp: string;
   subject: string;
   timestamp: string;
   userId: number;
+  userName: string;
 }
