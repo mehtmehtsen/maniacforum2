@@ -20,6 +20,15 @@ interface ThreadRes {
   subject: string;
 }
 
+interface UserRes {
+  username: string;
+}
+
+interface LastMsgRes {
+  id: number;
+  timestamp: string;
+}
+
 export class ThreadsService {
   public async getThreads(boardId: number): Promise<Thread[]> {
     let out: Thread[] = [];
@@ -49,7 +58,7 @@ export class ThreadsService {
   }
 
   // get additional thread data
-  getThreadDataPromise = async (threadRes: ThreadRes): Promise<any> => {
+  getThreadDataPromise = async (threadRes: ThreadRes): Promise<Thread> => {
     const threadData: Thread = {
       id: threadRes.id,
       userId: threadRes.user_id,
@@ -73,7 +82,7 @@ export class ThreadsService {
   };
 
   // get creator user name
-  getUsernamePromise = async (userId: number): Promise<any> => {
+  getUsernamePromise = async (userId: number): Promise<UserRes> => {
     return pg
       .one("SELECT username FROM users WHERE id=$1;", userId)
       .then((userRes) => {
@@ -85,7 +94,7 @@ export class ThreadsService {
   };
 
   // get thread's last msg data
-  getLastMsgPromise = async (threadId: number): Promise<any> => {
+  getLastMsgPromise = async (threadId: number): Promise<LastMsgRes> => {
     return pg
       .one(
         "SELECT id, timestamp FROM msgs WHERE $1::text::ltree @> path ORDER BY id DESC LIMIT 1;",
