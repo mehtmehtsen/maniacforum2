@@ -26,32 +26,14 @@ export class ThreadsService {
 
     // get board's msgs with parent_id NULL (which are the threads)
     await pg
-      .many(
+      .manyOrNone(
         "SELECT id, user_id, timestamp, subject FROM msgs WHERE parent_id IS NULL AND board_id=$1;",
         boardId
       )
       .then(async (threadsRes: ThreadRes[]) => {
         // build promises to get additional data about each thread
-        const threadPromises = threadsRes.map(async (thread) => {
-          const threadData: Thread = {
-            id: thread.id,
-            userId: thread.user_id,
-            userName: "",
-            timestamp: thread.timestamp,
-            subject: thread.subject,
-            lastMsgId: 0,
-            lastMsgTimestamp: "",
-          };
-
-          const usernamePromise = this.getUsernamePromise(threadData.userId);
-          const lastMsgPromise = this.getLastMsgPromise(threadData.id);
-
-          await Promise.all([usernamePromise, lastMsgPromise]).then((res) => {
-            threadData.userName = res[0].username;
-            threadData.lastMsgId = res[1].id;
-            threadData.lastMsgTimestamp = res[1].timestamp;
-          });
-          return threadData;
+        const threadPromises = threadsRes.map(async (threadRes) => {
+          return this.getThreadDataPromise(threadRes);
         });
 
         // execute promises to get additional data about each thread
@@ -65,6 +47,30 @@ export class ThreadsService {
 
     return out;
   }
+
+  // get additional thread data
+  getThreadDataPromise = async (threadRes: ThreadRes): Promise<any> => {
+    const threadData: Thread = {
+      id: threadRes.id,
+      userId: threadRes.user_id,
+      userName: "",
+      timestamp: threadRes.timestamp,
+      subject: threadRes.subject,
+      lastMsgId: 0,
+      lastMsgTimestamp: "",
+    };
+
+    const usernamePromise = this.getUsernamePromise(threadData.userId);
+    const lastMsgPromise = this.getLastMsgPromise(threadData.id);
+
+    await Promise.all([usernamePromise, lastMsgPromise]).then((res) => {
+      threadData.userName = res[0].username;
+      threadData.lastMsgId = res[1].id;
+      threadData.lastMsgTimestamp = res[1].timestamp;
+    });
+
+    return threadData;
+  };
 
   // get creator user name
   getUsernamePromise = async (userId: number): Promise<any> => {
