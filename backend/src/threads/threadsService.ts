@@ -1,5 +1,7 @@
 import { Thread } from "./thread";
 import { pg } from "../postgresService";
+import { getUsernamePromise } from "../helpers/getUsername";
+import { getLastMsgPromise } from "../helpers/getLastMsg";
 
 // A post request should not contain an id.
 // export type MsgCreationParams = Pick<
@@ -18,15 +20,6 @@ interface ThreadRes {
   user_id: number;
   timestamp: string;
   subject: string;
-}
-
-interface UserRes {
-  username: string;
-}
-
-interface LastMsgRes {
-  id: number;
-  timestamp: string;
 }
 
 export class ThreadsService {
@@ -69,8 +62,8 @@ export class ThreadsService {
       lastMsgTimestamp: "",
     };
 
-    const usernamePromise = this.getUsernamePromise(threadData.userId);
-    const lastMsgPromise = this.getLastMsgPromise(threadData.id);
+    const usernamePromise = getUsernamePromise(threadData.userId);
+    const lastMsgPromise = getLastMsgPromise(threadData.id);
 
     await Promise.all([usernamePromise, lastMsgPromise]).then((res) => {
       threadData.userName = res[0].username;
@@ -79,30 +72,5 @@ export class ThreadsService {
     });
 
     return threadData;
-  };
-
-  // get creator user name
-  getUsernamePromise = async (userId: number): Promise<UserRes> => {
-    return pg
-      .one("SELECT username FROM users WHERE id=$1;", userId)
-      .then((userRes) => {
-        return userRes;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  // get thread's last msg data
-  getLastMsgPromise = async (threadId: number): Promise<LastMsgRes> => {
-    return pg
-      .one(
-        "SELECT id, timestamp FROM msgs WHERE $1::text::ltree @> path ORDER BY id DESC LIMIT 1;",
-        threadId
-      )
-      .then((lastMsgRes) => {
-        return lastMsgRes;
-      })
-      .catch((e) => console.log(e));
   };
 }
