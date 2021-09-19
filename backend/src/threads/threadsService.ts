@@ -31,6 +31,7 @@ export class ThreadsService {
         boardId
       )
       .then(async (threadsRes: ThreadRes[]) => {
+        // build promises to get additional data about each thread
         const threadPromises = threadsRes.map(async (thread) => {
           const threadData: Thread = {
             id: thread.id,
@@ -52,6 +53,8 @@ export class ThreadsService {
           });
           return threadData;
         });
+
+        // execute promises to get additional data about each thread
         await Promise.all(threadPromises).then((res) => {
           res.forEach((threadData) => {
             out.push(threadData);
