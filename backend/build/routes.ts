@@ -32,7 +32,7 @@ const models: TsoaRoute.Models = {
             "id": {"dataType":"double","required":true},
             "userId": {"dataType":"double","required":true},
             "parentId": {"dataType":"double","required":true},
-            "parent_userId": {"dataType":"double","required":true},
+            "parentUserId": {"dataType":"double","required":true},
             "timestamp": {"dataType":"string","required":true},
             "subject": {"dataType":"string","required":true},
             "body": {"dataType":"string","required":true},

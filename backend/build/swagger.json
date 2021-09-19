@@ -57,7 +57,7 @@
 						"type": "number",
 						"format": "double"
 					},
-					"parent_userId": {
+					"parentUserId": {
 						"type": "number",
 						"format": "double"
 					},
@@ -82,7 +82,7 @@
 					"id",
 					"userId",
 					"parentId",
-					"parent_userId",
+					"parentUserId",
 					"timestamp",
 					"subject",
 					"body",
