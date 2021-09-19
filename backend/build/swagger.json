@@ -57,7 +57,7 @@
 						"type": "number",
 						"format": "double"
 					},
-					"parentUserId": {
+					"parent_userId": {
 						"type": "number",
 						"format": "double"
 					},
@@ -69,6 +69,12 @@
 					},
 					"body": {
 						"type": "string"
+					},
+					"authorMod": {
+						"type": "boolean"
+					},
+					"path": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -76,20 +82,18 @@
 					"id",
 					"userId",
 					"parentId",
-					"parentUserId",
+					"parent_userId",
 					"timestamp",
 					"subject",
-					"body"
+					"body",
+					"authorMod",
+					"path"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
 			"Thread": {
 				"properties": {
-					"boardId": {
-						"type": "number",
-						"format": "double"
-					},
 					"id": {
 						"type": "number",
 						"format": "double"
@@ -98,13 +102,8 @@
 						"type": "number",
 						"format": "double"
 					},
-					"parentId": {
-						"type": "number",
-						"format": "double"
-					},
-					"parentUserId": {
-						"type": "number",
-						"format": "double"
+					"userName": {
+						"type": "string"
 					},
 					"timestamp": {
 						"type": "string"
@@ -112,19 +111,22 @@
 					"subject": {
 						"type": "string"
 					},
-					"body": {
+					"lastMsgId": {
+						"type": "number",
+						"format": "double"
+					},
+					"lastMsgTimestamp": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"boardId",
 					"id",
 					"userId",
-					"parentId",
-					"parentUserId",
+					"userName",
 					"timestamp",
 					"subject",
-					"body"
+					"lastMsgId",
+					"lastMsgTimestamp"
 				],
 				"type": "object",
 				"additionalProperties": false

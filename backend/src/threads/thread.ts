@@ -1,10 +1,9 @@
 export interface Thread {
-  boardId: number;
   id: number;
   userId: number;
-  parentId: number;
-  parentUserId: number;
+  userName: string;
   timestamp: string;
   subject: string;
-  body: string;
+  lastMsgId: number;
+  lastMsgTimestamp: string;
 }
