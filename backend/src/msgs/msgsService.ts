@@ -39,14 +39,11 @@ export class MsgsService {
 
         await Promise.all(msgPromises).then((res) => {
           res.forEach((msgData) => {
-            console.log("pushing");
             out.push(msgData);
           });
         });
       })
       .catch((error) => console.error(error));
-
-    console.log("out", out);
 
     return out;
   }
@@ -66,8 +63,6 @@ export class MsgsService {
       username: "",
       parentUsername: "",
     };
-
-    console.log("HAHAHAHA", msgData.userId, msgData.parentUserId);
 
     const usernamePromise = getUsernamePromise(msgData.userId);
     const parentUsernamePromise = getUsernamePromise(msgData.parentUserId);
