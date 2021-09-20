@@ -57,7 +57,7 @@
 						"type": "number",
 						"format": "double"
 					},
-					"parent_userId": {
+					"parentUserId": {
 						"type": "number",
 						"format": "double"
 					},
@@ -75,6 +75,12 @@
 					},
 					"path": {
 						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"parentUsername": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -82,12 +88,14 @@
 					"id",
 					"userId",
 					"parentId",
-					"parent_userId",
+					"parentUserId",
 					"timestamp",
 					"subject",
 					"body",
 					"authorMod",
-					"path"
+					"path",
+					"username",
+					"parentUsername"
 				],
 				"type": "object",
 				"additionalProperties": false

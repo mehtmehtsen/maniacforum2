@@ -3,10 +3,12 @@ export interface Msg {
   id: number;
   userId: number;
   parentId: number;
-  parent_userId: number;
+  parentUserId: number;
   timestamp: string;
   subject: string;
   body: string;
   authorMod: boolean;
   path: string;
+  username: string;
+  parentUsername: string;
 }

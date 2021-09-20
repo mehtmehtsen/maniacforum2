@@ -1,5 +1,6 @@
 import { Thread } from "./thread";
 import { pg } from "../postgresService";
+import { getUsernamePromise } from "../helpers/getUsernamePromise";
 
 // A post request should not contain an id.
 // export type MsgCreationParams = Pick<
@@ -18,10 +19,6 @@ interface ThreadRes {
   user_id: number;
   timestamp: string;
   subject: string;
-}
-
-interface UserRes {
-  username: string;
 }
 
 interface LastMsgRes {
@@ -69,7 +66,7 @@ export class ThreadsService {
       lastMsgTimestamp: "",
     };
 
-    const usernamePromise = this.getUsernamePromise(threadData.userId);
+    const usernamePromise = getUsernamePromise(threadData.userId);
     const lastMsgPromise = this.getLastMsgPromise(threadData.id);
 
     await Promise.all([usernamePromise, lastMsgPromise]).then((res) => {
@@ -79,18 +76,6 @@ export class ThreadsService {
     });
 
     return threadData;
-  };
-
-  // get creator user name
-  getUsernamePromise = async (userId: number): Promise<UserRes> => {
-    return pg
-      .one("SELECT username FROM users WHERE id=$1;", userId)
-      .then((userRes) => {
-        return userRes;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
 
   // get thread's last msg data
