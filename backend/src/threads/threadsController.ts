@@ -13,6 +13,10 @@ import { ThreadsService } from "./threadsService";
 
 @Route("threads")
 export class ThreadsController extends Controller {
+  /**
+   * Retrieves all threads in a board.
+   * @param boardId id of said board.
+   */
   @Get("{boardId}")
   public async getThreads(@Path() boardId: number): Promise<Thread[]> {
     return new ThreadsService().getThreads(boardId);

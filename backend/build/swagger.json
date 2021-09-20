@@ -172,6 +172,7 @@
 						}
 					}
 				},
+				"description": "Retrieves boards",
 				"security": [],
 				"parameters": []
 			}
@@ -194,9 +195,11 @@
 						}
 					}
 				},
+				"description": "Retrieves all messages of a thread.",
 				"security": [],
 				"parameters": [
 					{
+						"description": "id of any msg. For getting a thread, it should be the id of a msg with parent_id = null.",
 						"in": "path",
 						"name": "threadId",
 						"required": true,
@@ -226,9 +229,11 @@
 						}
 					}
 				},
+				"description": "Retrieves all threads in a board.",
 				"security": [],
 				"parameters": [
 					{
+						"description": "id of said board.",
 						"in": "path",
 						"name": "boardId",
 						"required": true,
