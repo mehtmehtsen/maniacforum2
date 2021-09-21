@@ -1,5 +1,9 @@
 # ManiacForum2
 
+## TODO
+- have one typing system (not `Msg` _and_ `MsgRes` e.g.), user that `Pick` thing.
+- move getMsgDataPromise into own function
+
 ## Database model
 
 - enter pgadmin (see PGAdmin)
