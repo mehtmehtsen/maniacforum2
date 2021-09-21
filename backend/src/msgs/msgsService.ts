@@ -1,4 +1,4 @@
-import { Msg } from "./msg";
+import { Msg, MsgRes } from "./msg";
 import { pg } from "../postgresService";
 import { getUsernamePromise } from "../helpers/getUsernamePromise";
 
@@ -13,19 +13,6 @@ import { getUsernamePromise } from "../helpers/getUsernamePromise";
 //   | "title"
 //   | "body"
 // >;
-
-interface MsgRes {
-  board_id: number;
-  id: number;
-  user_id: number;
-  parent_id: number;
-  parent_user_id: number;
-  timestamp: string;
-  subject: string;
-  body: string;
-  author_mod: boolean;
-  path: string;
-}
 
 export class MsgsService {
   public async getMsgs(threadId: number): Promise<Msg[]> {
