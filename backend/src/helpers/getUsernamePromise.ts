@@ -1,8 +1,5 @@
 import { pg } from "../postgresService";
-
-interface UserRes {
-  username: string;
-}
+import { UserRes } from "../resInterfaces/resInterfaces";
 
 // get creator user name
 export const getUsernamePromise = async (userId: number): Promise<UserRes> => {

@@ -1,6 +1,7 @@
-import { Msg, MsgRes } from "./msg";
 import { pg } from "../postgresService";
 import { getUsernamePromise } from "../helpers/getUsernamePromise";
+import { Msg } from "./msg";
+import { MsgRes } from "../resInterfaces/resInterfaces";
 
 // A post request should not contain an id.
 // export type MsgCreationParams = Pick<

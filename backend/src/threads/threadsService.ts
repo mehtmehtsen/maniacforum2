@@ -1,6 +1,7 @@
 import { Thread } from "./thread";
 import { pg } from "../postgresService";
 import { getUsernamePromise } from "../helpers/getUsernamePromise";
+import { ThreadRes, LastMsgRes } from "../resInterfaces/resInterfaces";
 
 // A post request should not contain an id.
 // export type MsgCreationParams = Pick<
@@ -13,18 +14,6 @@ import { getUsernamePromise } from "../helpers/getUsernamePromise";
 //   | "title"
 //   | "body"
 // >;
-
-interface ThreadRes {
-  id: number;
-  user_id: number;
-  timestamp: string;
-  subject: string;
-}
-
-interface LastMsgRes {
-  id: number;
-  timestamp: string;
-}
 
 export class ThreadsService {
   public async getThreads(boardId: number): Promise<Thread[]> {
