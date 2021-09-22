@@ -38,6 +38,8 @@ const models: TsoaRoute.Models = {
             "body": {"dataType":"string","required":true},
             "authorMod": {"dataType":"boolean","required":true},
             "path": {"dataType":"string","required":true},
+            "username": {"dataType":"string","required":true},
+            "parentUsername": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },

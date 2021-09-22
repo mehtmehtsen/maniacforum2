@@ -30,6 +30,8 @@ export class ApiService extends BaseService {
   static readonly GetBoardsPath = '/boards';
 
   /**
+   * Retrieves boards
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getBoards()` instead.
    *
@@ -54,6 +56,8 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Retrieves boards
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getBoards$Response()` instead.
    *
@@ -73,12 +77,18 @@ export class ApiService extends BaseService {
   static readonly GetMsgsPath = '/msgs/{threadId}';
 
   /**
+   * Retrieves all messages of a thread.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getMsgs()` instead.
    *
    * This method doesn't expect any request body.
    */
   getMsgs$Response(params: {
+
+    /**
+     * id of any msg. For getting a thread, it should be the id of a msg with parent_id &#x3D; null.
+     */
     threadId: number;
   }): Observable<StrictHttpResponse<Array<Msg>>> {
 
@@ -99,12 +109,18 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Retrieves all messages of a thread.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getMsgs$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getMsgs(params: {
+
+    /**
+     * id of any msg. For getting a thread, it should be the id of a msg with parent_id &#x3D; null.
+     */
     threadId: number;
   }): Observable<Array<Msg>> {
 
@@ -119,12 +135,18 @@ export class ApiService extends BaseService {
   static readonly GetThreadsPath = '/threads/{boardId}';
 
   /**
+   * Retrieves all threads in a board.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getThreads()` instead.
    *
    * This method doesn't expect any request body.
    */
   getThreads$Response(params: {
+
+    /**
+     * id of said board.
+     */
     boardId: number;
   }): Observable<StrictHttpResponse<Array<Thread>>> {
 
@@ -145,12 +167,18 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Retrieves all threads in a board.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getThreads$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getThreads(params: {
+
+    /**
+     * id of said board.
+     */
     boardId: number;
   }): Observable<Array<Thread>> {
 

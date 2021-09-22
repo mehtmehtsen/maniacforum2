@@ -9,4 +9,6 @@ export interface Msg {
   body: string;
   authorMod: boolean;
   path: string;
+  username: string;
+  parentUsername: string;
 }

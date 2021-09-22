@@ -13,6 +13,7 @@ import { BoardsService } from "./boardsService";
 
 @Route("boards")
 export class BoardsController extends Controller {
+  /** Retrieves boards */
   @Get()
   public async getBoards(): Promise<Board[]> {
     return new BoardsService().getBoards();

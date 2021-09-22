@@ -6,9 +6,11 @@ export interface Msg {
   body: string;
   id: number;
   parentId: number;
-  parent_userId: number;
+  parentUserId: number;
+  parentUsername: string;
   path: string;
   subject: string;
   timestamp: string;
   userId: number;
+  username: string;
 }
