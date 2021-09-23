@@ -17,7 +17,6 @@ export class MsgsService {
   public async getMsgs(threadId: number): Promise<Msg[]> {
     let out: Msg[] = [];
     await pg
-      // .many(`SELECT * FROM msgs WHERE $1::text::ltree @> path`, threadId)
       .many(
         `SELECT
           msgs.board_id AS "boardId",
