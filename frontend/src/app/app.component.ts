@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   boards: Array<Board> = [];
   threads: Array<Thread> = [];
   msgs: Array<Msg> = [];
+  msg = <Msg>{};
 
   constructor(private apiService: ApiService) {}
 
@@ -29,6 +30,12 @@ export class AppComponent implements OnInit {
   loadThread(id: number) {
     this.apiService.getMsgs({ threadId: id }).subscribe((r) => {
       this.msgs = r;
+    });
+  }
+
+  loadMsg(id: number) {
+    this.apiService.getMsg({ msgId: id }).subscribe((r) => {
+      this.msg = r;
     });
   }
 }

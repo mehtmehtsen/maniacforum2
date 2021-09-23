@@ -11,7 +11,11 @@
 </div>
 <p></p>
 <div id="msgs">
-  <div class="msg" *ngFor="let msg of msgs">
+  <div class="msg" *ngFor="let msg of msgs" (click)="loadMsg(msg.id)">
     {{msg.subject}}
   </div>
+</div>
+<div class="msg">
+  <p>{{msg.subject}}</p>
+  <div class="body">{{msg.body}}</div>
 </div>
