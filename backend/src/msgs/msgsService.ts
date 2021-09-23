@@ -55,10 +55,14 @@ export class MsgsService {
     const usernamePromise = getUsernamePromise(msgData.userId);
     const parentUsernamePromise = getUsernamePromise(msgData.parentUserId);
 
-    await Promise.all([usernamePromise, parentUsernamePromise]).then((res) => {
-      msgData.username = res[0].username;
-      msgData.parentUsername = res[1] ? res[1].username : "";
-    });
+    await Promise.all([usernamePromise, parentUsernamePromise])
+      .then((res) => {
+        msgData.username = res[0].username;
+        msgData.parentUsername = res[1] ? res[1].username : "";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     return msgData;
   };
