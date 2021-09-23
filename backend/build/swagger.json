@@ -18,7 +18,7 @@
 					"topic": {
 						"type": "string"
 					},
-					"lastMessage": {
+					"last_message": {
 						"type": "string"
 					},
 					"mods": {
@@ -33,7 +33,7 @@
 					"id",
 					"name",
 					"topic",
-					"lastMessage",
+					"last_message",
 					"mods"
 				],
 				"type": "object",

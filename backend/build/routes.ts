@@ -21,7 +21,7 @@ const models: TsoaRoute.Models = {
             "id": {"dataType":"double","required":true},
             "name": {"dataType":"string","required":true},
             "topic": {"dataType":"string","required":true},
-            "lastMessage": {"dataType":"string","required":true},
+            "last_message": {"dataType":"string","required":true},
             "mods": {"dataType":"array","array":{"dataType":"double"},"required":true},
         },
         "additionalProperties": false,

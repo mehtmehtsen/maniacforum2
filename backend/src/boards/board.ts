@@ -2,6 +2,6 @@ export interface Board {
   id: number;
   name: string;
   topic: string;
-  lastMessage: string;
+  last_message: string;
   mods: number[];
 }
