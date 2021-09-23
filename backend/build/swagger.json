@@ -179,7 +179,7 @@
 		},
 		"/msg/{msgId}": {
 			"get": {
-				"operationId": "GetMsgs",
+				"operationId": "GetMsg",
 				"responses": {
 					"200": {
 						"description": "Ok",

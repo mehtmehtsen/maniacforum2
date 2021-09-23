@@ -94,7 +94,7 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/msg/:msgId',
 
-            function MsgController_getMsgs(request: any, response: any, next: any) {
+            function MsgController_getMsg(request: any, response: any, next: any) {
             const args = {
                     msgId: {"in":"path","name":"msgId","required":true,"dataType":"double"},
             };
@@ -111,7 +111,7 @@ export function RegisterRoutes(app: express.Router) {
             const controller = new MsgController();
 
 
-            const promise = controller.getMsgs.apply(controller, validatedArgs as any);
+            const promise = controller.getMsg.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

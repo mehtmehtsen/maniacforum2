@@ -18,7 +18,7 @@ export class MsgController extends Controller {
    * @param msgId id of any msg.
    */
   @Get("{msgId}")
-  public async getMsgs(@Path() msgId: number): Promise<Msg> {
+  public async getMsg(@Path() msgId: number): Promise<Msg> {
     return new MsgService().getMsg(msgId);
   }
 }

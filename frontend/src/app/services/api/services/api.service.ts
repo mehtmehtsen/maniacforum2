@@ -72,19 +72,19 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * Path part for operation getMsgs
+   * Path part for operation getMsg
    */
-  static readonly GetMsgsPath = '/msg/{msgId}';
+  static readonly GetMsgPath = '/msg/{msgId}';
 
   /**
    * Retrieves all messages of a thread.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getMsgs()` instead.
+   * To access only the response body, use `getMsg()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getMsgs$Response(params: {
+  getMsg$Response(params: {
 
     /**
      * id of any msg.
@@ -92,7 +92,7 @@ export class ApiService extends BaseService {
     msgId: number;
   }): Observable<StrictHttpResponse<Msg>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgsPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgPath, 'get');
     if (params) {
       rb.path('msgId', params.msgId, {});
     }
@@ -112,11 +112,11 @@ export class ApiService extends BaseService {
    * Retrieves all messages of a thread.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getMsgs$Response()` instead.
+   * To access the full response (for headers, for example), `getMsg$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getMsgs(params: {
+  getMsg(params: {
 
     /**
      * id of any msg.
@@ -124,25 +124,25 @@ export class ApiService extends BaseService {
     msgId: number;
   }): Observable<Msg> {
 
-    return this.getMsgs$Response(params).pipe(
+    return this.getMsg$Response(params).pipe(
       map((r: StrictHttpResponse<Msg>) => r.body as Msg)
     );
   }
 
   /**
-   * Path part for operation getMsgs_1
+   * Path part for operation getMsgs
    */
-  static readonly GetMsgs_1Path = '/msgs/{threadId}';
+  static readonly GetMsgsPath = '/msgs/{threadId}';
 
   /**
    * Retrieves all messages of a thread.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getMsgs_1()` instead.
+   * To access only the response body, use `getMsgs()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getMsgs_1$Response(params: {
+  getMsgs$Response(params: {
 
     /**
      * id of any msg. For getting a thread, it should be the id of a msg with parent_id &#x3D; null.
@@ -150,7 +150,7 @@ export class ApiService extends BaseService {
     threadId: number;
   }): Observable<StrictHttpResponse<Array<Msg>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgs_1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ApiService.GetMsgsPath, 'get');
     if (params) {
       rb.path('threadId', params.threadId, {});
     }
@@ -170,11 +170,11 @@ export class ApiService extends BaseService {
    * Retrieves all messages of a thread.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getMsgs_1$Response()` instead.
+   * To access the full response (for headers, for example), `getMsgs$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getMsgs_1(params: {
+  getMsgs(params: {
 
     /**
      * id of any msg. For getting a thread, it should be the id of a msg with parent_id &#x3D; null.
@@ -182,7 +182,7 @@ export class ApiService extends BaseService {
     threadId: number;
   }): Observable<Array<Msg>> {
 
-    return this.getMsgs_1$Response(params).pipe(
+    return this.getMsgs$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Msg>>) => r.body as Array<Msg>)
     );
   }
