@@ -2,7 +2,7 @@
 /* eslint-disable */
 export interface Board {
   id: number;
-  last_message: string;
+  lastMessage: string;
   mods: Array<number>;
   name: string;
   topic: string;
