@@ -110,7 +110,7 @@
 						"type": "number",
 						"format": "double"
 					},
-					"userName": {
+					"username": {
 						"type": "string"
 					},
 					"timestamp": {
@@ -130,7 +130,7 @@
 				"required": [
 					"id",
 					"userId",
-					"userName",
+					"username",
 					"timestamp",
 					"subject",
 					"lastMsgId",

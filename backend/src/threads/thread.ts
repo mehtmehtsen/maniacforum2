@@ -1,7 +1,7 @@
 export interface Thread {
   id: number;
   userId: number;
-  userName: string;
+  username: string;
   timestamp: string;
   subject: string;
   lastMsgId: number;
