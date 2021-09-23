@@ -7,5 +7,5 @@ export interface Thread {
   subject: string;
   timestamp: string;
   userId: number;
-  userName: string;
+  username: string;
 }
