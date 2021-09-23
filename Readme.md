@@ -1,7 +1,9 @@
 # ManiacForum2
 
 ## TODO
-- have one typing system (not `Msg` _and_ `MsgRes` e.g.), user that `Pick` thing.
+
+- don't get `*` in `/msgs`
+- have one typing system (not `Msg` _and_ `MsgRes` e.g.), use that `Pick` thing.
 - move getMsgDataPromise into own function
 
 ## Database model
