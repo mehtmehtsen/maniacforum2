@@ -20,7 +20,7 @@
 | msgs   | List of Threads        | `/threads/{boardId}` |
 |        | List of Msgs in Thread | `/msgs/{threadId}`   |
 |        | Indivual msg           | `/msg/{msgId}`       |
-| users  | Individual user        | `/users/{userId}`    |
+| users  | Individual user        | none, as of yet      |
 
 ## Docker
 
