@@ -118,13 +118,6 @@
 					},
 					"subject": {
 						"type": "string"
-					},
-					"lastMsgId": {
-						"type": "number",
-						"format": "double"
-					},
-					"lastMsgTimestamp": {
-						"type": "string"
 					}
 				},
 				"required": [
@@ -132,9 +125,7 @@
 					"userId",
 					"username",
 					"timestamp",
-					"subject",
-					"lastMsgId",
-					"lastMsgTimestamp"
+					"subject"
 				],
 				"type": "object",
 				"additionalProperties": false

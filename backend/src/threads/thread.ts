@@ -4,6 +4,4 @@ export interface Thread {
   username: string;
   timestamp: string;
   subject: string;
-  lastMsgId: number;
-  lastMsgTimestamp: string;
 }
