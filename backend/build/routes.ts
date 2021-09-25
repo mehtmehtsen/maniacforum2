@@ -54,8 +54,6 @@ const models: TsoaRoute.Models = {
             "username": {"dataType":"string","required":true},
             "timestamp": {"dataType":"string","required":true},
             "subject": {"dataType":"string","required":true},
-            "lastMsgId": {"dataType":"double","required":true},
-            "lastMsgTimestamp": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
