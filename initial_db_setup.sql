@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS public.users
     id serial NOT NULL,
     username character varying(64) NOT NULL,
     password character varying(64) NOT NULL,
-    firstname character varying(64),
-    lastname character varying(64),
+    first_name character varying(64),
+    last_name character varying(64),
     email character varying(64) NOT NULL,
-    showname boolean,
+    show_name boolean,
     residence character varying(128),
     homepage character varying(128),
-    firstgame character varying(128),
+    first_game character varying(128),
     genres text,
     systems text,
     classics text,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS public.users
     id_ps character varying(64),
     id_nintendo character varying(64),
     image character varying,
-    registration_timestamp timestamp without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
     mod_for_boards integer[],
     PRIMARY KEY (id)
 );
@@ -45,10 +45,11 @@ CREATE TABLE IF NOT EXISTS public.msgs
     user_id integer NOT NULL,
     parent_id integer,
     parent_user_id integer,
-    "timestamp" timestamp without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
     subject character varying(128) NOT NULL,
     body text,
     author_mod boolean,
+    modified_at timestamp without time zone NOT NULL,
     PRIMARY KEY (id)
 );
 
