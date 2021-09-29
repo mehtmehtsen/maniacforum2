@@ -1,4 +1,4 @@
-import { Thread } from "./thread";
+import { Thread } from "../models/thread";
 import { pg } from "../postgresService";
 
 export class ThreadsService {

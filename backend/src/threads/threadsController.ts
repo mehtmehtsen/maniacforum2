@@ -8,7 +8,7 @@ import {
   Route,
   SuccessResponse,
 } from "tsoa";
-import { Thread } from "./thread";
+import { Thread } from "../models/thread";
 import { ThreadsService } from "./threadsService";
 
 @Route("threads")
