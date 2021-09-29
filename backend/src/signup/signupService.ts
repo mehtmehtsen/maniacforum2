@@ -1,4 +1,5 @@
 import { pg } from "../postgresService";
+import { hashSync } from "bcryptjs";
 import { SignUpResponse } from "../models/signup";
 
 export class SignupService {
@@ -7,10 +8,11 @@ export class SignupService {
     username: string,
     password: string
   ): Promise<SignUpResponse> {
+    const hashedPassword = hashSync(password, 10);
     await pg
-      .any(
+      .none(
         `INSERT INTO users (email, username, password, created_at) VALUES ($1, $2, $3, $4)`,
-        [email, username, password, new Date()]
+        [email, username, hashedPassword, new Date()]
       )
       .then(async (r) => {
         console.log("%c r", "background: #222;", r);
