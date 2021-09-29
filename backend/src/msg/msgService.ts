@@ -1,5 +1,5 @@
 import { pg } from "../postgresService";
-import { Msg } from "../msgs/msg";
+import { Msg } from "../models/msg";
 
 // A post request should not contain an id.
 // export type MsgCreationParams = Pick<

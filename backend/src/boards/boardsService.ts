@@ -1,4 +1,4 @@
-import { Board } from "./board";
+import { Board } from "../models/board";
 import { pg } from "../postgresService";
 
 export class BoardsService {

@@ -8,7 +8,7 @@ import {
   Route,
   SuccessResponse,
 } from "tsoa";
-import { Board } from "./board";
+import { Board } from "../models/board";
 import { BoardsService } from "./boardsService";
 
 @Route("boards")

@@ -8,7 +8,7 @@ import {
   Route,
   SuccessResponse,
 } from "tsoa";
-import { Msg } from "./msg";
+import { Msg } from "../models/msg";
 import { MsgsService } from "./msgsService";
 
 @Route("msgs")
