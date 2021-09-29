@@ -9,6 +9,8 @@ import { MsgController } from './../src/msg/msgController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { MsgsController } from './../src/msgs/msgsController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { SignupController } from './../src/signup/signupController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ThreadsController } from './../src/threads/threadsController';
 import * as express from 'express';
 
@@ -35,7 +37,7 @@ const models: TsoaRoute.Models = {
             "userId": {"dataType":"double","required":true},
             "parentId": {"dataType":"double","required":true},
             "parentUserId": {"dataType":"double","required":true},
-            "timestamp": {"dataType":"string","required":true},
+            "createdAt": {"dataType":"string","required":true},
             "subject": {"dataType":"string","required":true},
             "body": {"dataType":"string","required":true},
             "authorMod": {"dataType":"boolean","required":true},
@@ -46,13 +48,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SignUpResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "response": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Thread": {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
             "userId": {"dataType":"double","required":true},
             "username": {"dataType":"string","required":true},
-            "timestamp": {"dataType":"string","required":true},
+            "createdAt": {"dataType":"string","required":true},
             "subject": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
@@ -133,6 +143,31 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.getMsgs.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/signup',
+
+            function SignupController_signup(request: any, response: any, next: any) {
+            const args = {
+                    email: {"in":"query","name":"email","required":true,"dataType":"any"},
+                    username: {"in":"query","name":"username","required":true,"dataType":"any"},
+                    password: {"in":"query","name":"password","required":true,"dataType":"any"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err: any) {
+                return next(err);
+            }
+
+            const controller = new SignupController();
+
+
+            const promise = controller.signup.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
