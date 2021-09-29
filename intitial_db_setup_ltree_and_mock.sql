@@ -1,4 +1,4 @@
-CREATE EXTENSION ltree;
+CREATE EXTENSION IF NOT EXISTS ltree;
 
 -- add ltree path column to msgs
 ALTER TABLE msgs ADD path ltree; 
