@@ -4,7 +4,7 @@ export interface Msg {
   userId: number;
   parentId: number;
   parentUserId: number;
-  timestamp: string;
+  createdAt: string;
   subject: string;
   body: string;
   authorMod: boolean;

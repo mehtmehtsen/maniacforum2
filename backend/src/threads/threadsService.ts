@@ -11,7 +11,7 @@ export class ThreadsService {
         `SELECT
           msgs.id, 
           msgs.user_id AS "userID", 
-          msgs.timestamp, 
+          msgs.created_at, 
           msgs.subject,
           users.username AS username
         FROM msgs 

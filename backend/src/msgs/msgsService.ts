@@ -24,7 +24,7 @@ export class MsgsService {
           msgs.user_id AS "userId",
           msgs.parent_id AS "parentId",
           msgs.parent_user_id AS "parentUserId",
-          msgs.timestamp,
+          msgs.created_at,
           msgs.subject,
           msgs.body,
           msgs.author_mod AS "authorMod",

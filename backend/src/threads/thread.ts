@@ -2,6 +2,6 @@ export interface Thread {
   id: number;
   userId: number;
   username: string;
-  timestamp: string;
+  createdAt: string;
   subject: string;
 }
