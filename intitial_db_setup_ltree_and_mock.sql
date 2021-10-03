@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS ltree;
 ALTER TABLE msgs ADD path ltree; 
 
 -- create users
-INSERT INTO users VALUES (DEFAULT, 'mat', 'ketchup', 'Marius', 'Tippkämper', 'tippkaemper@posteo.de', FALSE, 'Bochon', 'https://www.komeht.de', 'Nibbles', 'Rogue Lite z.B.', 'Schwitz', '', '', '', '', '', '', CURRENT_TIMESTAMP, '{}');
+INSERT INTO users VALUES (DEFAULT, 'mat', 'ketchup', 'Marius', 'Tippkämper', 'tippkaemper@posteo.de', FALSE, 'Bochon', 'https://www.komeht.de', 'Nibbles', 'Rogue Lite z.B.', 'Schwitz', '', '', '', '', '', '', CURRENT_TIMESTAMP, '{}', true);
 
 -- create boards
 INSERT INTO boards VALUES (DEFAULT, 'Smalltalk', 'Diskussionen rund um die Welt der Videospiele.', NULL, NULL);

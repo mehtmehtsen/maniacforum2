@@ -54,6 +54,14 @@ CREATE TABLE IF NOT EXISTS public.msgs
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.user_validation
+(
+    user_id integer NOT NULL,
+    hash text NOT NULL,
+    created_at date NOT NULL,
+    PRIMARY KEY (user_id)
+);
+
 ALTER TABLE public.msgs
     ADD FOREIGN KEY (parent_id)
     REFERENCES public.msgs (id)
@@ -75,6 +83,12 @@ ALTER TABLE public.msgs
 ALTER TABLE public.msgs
     ADD FOREIGN KEY (board_id)
     REFERENCES public.boards (id)
+    NOT VALID;
+
+
+ALTER TABLE public.user_validation
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
     NOT VALID;
 
 END;
