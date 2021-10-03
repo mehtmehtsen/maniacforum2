@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS public.users
     image character varying,
     created_at timestamp without time zone NOT NULL,
     mod_for_boards integer[],
+    active boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
