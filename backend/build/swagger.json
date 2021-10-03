@@ -100,18 +100,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"SignUpResponse": {
-				"properties": {
-					"response": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"response"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"Thread": {
 				"properties": {
 					"id": {
@@ -249,12 +237,23 @@
 			"post": {
 				"operationId": "Signup",
 				"responses": {
-					"200": {
-						"description": "Ok",
+					"204": {
+						"description": "No content"
+					},
+					"422": {
+						"description": "",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/SignUpResponse"
+									"properties": {
+										"reason": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"reason"
+									],
+									"type": "object"
 								}
 							}
 						}

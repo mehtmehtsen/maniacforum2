@@ -48,14 +48,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SignUpResponse": {
-        "dataType": "refObject",
-        "properties": {
-            "response": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Thread": {
         "dataType": "refObject",
         "properties": {
@@ -153,6 +145,7 @@ export function RegisterRoutes(app: express.Router) {
                     email: {"in":"query","name":"email","required":true,"dataType":"any"},
                     username: {"in":"query","name":"username","required":true,"dataType":"any"},
                     password: {"in":"query","name":"password","required":true,"dataType":"any"},
+                    validationErrorResponse: {"in":"res","name":"422","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"reason":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
