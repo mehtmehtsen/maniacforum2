@@ -49,12 +49,27 @@ export class SignupService {
     // save data in db
     const hashedPassword = hashSync(password, 10);
     await pg
-      .none(
-        `INSERT INTO users (email, username, password, created_at) VALUES ($1, $2, $3, $4)`,
-        [email, username, hashedPassword, new Date()]
+      .one(
+        `INSERT INTO users 
+          (email, username, password, created_at, active)
+        VALUES
+          ($1, $2, $3, $4, $5)
+        RETURNING id`,
+        [email, username, hashedPassword, new Date(), false]
       )
       .then(async (r) => {
-        console.log("%c r", "background: #222;", r);
+        console.log("createUser", r);
+        // save data (id, hash, created_at) in user_activation table
+        const token = hashSync(Math.random() * 100 + 54 + "", 10);
+        pg.none(
+          `INSERT INTO user_validation 
+            (user_id, hash, created_at) 
+          VALUES
+            ($1, $2, $3)`,
+          [r.id, token, new Date()]
+        ).then(() => {
+          console.log("now send mail with token");
+        });
       })
       .catch((error) => console.error(error));
 
