@@ -1,6 +1,7 @@
 import { pg } from "../postgresService";
 import { hashSync } from "bcryptjs";
 import { TsoaResponse } from "@tsoa/runtime";
+import { MailService } from "../mail/mailService";
 
 export class SignupService {
   public async signup(
@@ -69,6 +70,9 @@ export class SignupService {
           [r.id, token, new Date()]
         ).then(() => {
           console.log("now send mail with token");
+
+          const mailService = new MailService();
+          mailService.send(email, "mup", `mip ${token}`);
         });
       })
       .catch((error) => console.error(error));
