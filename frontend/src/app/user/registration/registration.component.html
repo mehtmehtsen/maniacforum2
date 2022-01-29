@@ -1,1 +1,19 @@
-<p>registration works!</p>
+<div class="form-wrapper">
+  <form id="form-register" action="">
+    <div class="input-wrapper">
+      <label for="mail">Email Adresse</label>
+      <input type="text" required id="mail">
+    </div>
+    
+    <div class="input-wrapper">
+      <label for="user">Username</label>
+      <input type="text" required id="user">
+    </div>
+    
+    <div class="input-wrapper">
+      <label for="password">Passwort</label>
+      <input type="password" required id="pass">
+    </div>
+  </form>
+</div>
+<button (click)="handleSubmit()">Submit</button>
