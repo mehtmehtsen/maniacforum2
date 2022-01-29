@@ -38,6 +38,16 @@ export class SignupService {
       });
     if (invalid) return;
 
+    // check for username valid
+    const usernameRegex = /^[a-z0-9 ]{3,16}$/;
+    if (!usernameRegex.test(username)) {
+      invalid = true;
+      return validationErrorResponse(422, {
+        reason: "This username is invalid.",
+      });
+    }
+    if (invalid) return;
+
     // check for username already used
     await pg
       .manyOrNone(`SELECT username FROM users WHERE username=$1`, username)
