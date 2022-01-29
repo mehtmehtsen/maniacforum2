@@ -82,7 +82,11 @@ export class SignupService {
           [r.id, token, new Date()]
         ).then(() => {
           const mailService = new MailService();
-          mailService.send(email, "mup", `mip ${token}`);
+          mailService.send(
+            email,
+            "M!2: Schönen Dank fürs Registrieren",
+            `Klicke diesen Link, um deine Email-Adresse zu verifizieren: http://localhost:4200/verify/${token}`
+          );
         });
       })
       .catch((error) => console.error(error));
