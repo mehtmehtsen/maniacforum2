@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiModule } from './services/api/api.module';
 import { BaseService } from './services/api/base-service';
+import { RegistrationComponent } from './user/registration/registration.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RegistrationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
