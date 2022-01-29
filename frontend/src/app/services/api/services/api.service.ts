@@ -188,6 +188,58 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Path part for operation signup
+   */
+  static readonly SignupPath = '/signup';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `signup()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  signup$Response(params: {
+    email: string;
+    username: string;
+    password: string;
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.SignupPath, 'post');
+    if (params) {
+      rb.query('email', params.email, {});
+      rb.query('username', params.username, {});
+      rb.query('password', params.password, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `signup$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  signup(params: {
+    email: string;
+    username: string;
+    password: string;
+  }): Observable<void> {
+
+    return this.signup$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
    * Path part for operation getThreads
    */
   static readonly GetThreadsPath = '/threads/{boardId}';

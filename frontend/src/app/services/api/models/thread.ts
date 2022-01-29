@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Thread {
+  createdAt: string;
   id: number;
   subject: string;
-  timestamp: string;
   userId: number;
   username: string;
 }
