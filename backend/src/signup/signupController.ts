@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Path,
-  Post,
-  Query,
-  Res,
-  Route,
-  SuccessResponse,
-  TsoaResponse,
-} from "tsoa";
+import { Controller, Post, Query, Res, Route, TsoaResponse } from "tsoa";
 import { SignupService } from "./signupService";
 
 @Route("signup")
@@ -23,7 +12,6 @@ export class SignupController extends Controller {
    */
   @Post()
   public async signup(
-    // @Path() msgId: number,
     @Query() email,
     @Query() username,
     @Query() password,
