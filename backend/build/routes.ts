@@ -11,6 +11,8 @@ import { MsgsController } from './../src/msgs/msgsController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { SignupController } from './../src/signup/signupController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { VerifyController } from './../src/signup/verifyController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ThreadsController } from './../src/threads/threadsController';
 import * as express from 'express';
 
@@ -161,6 +163,30 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.signup.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/verify',
+
+            function VerifyController_verify(request: any, response: any, next: any) {
+            const args = {
+                    token: {"in":"query","name":"token","required":true,"dataType":"any"},
+                    validationErrorResponse: {"in":"res","name":"422","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"reason":{"dataType":"string","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err: any) {
+                return next(err);
+            }
+
+            const controller = new VerifyController();
+
+
+            const promise = controller.verify.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

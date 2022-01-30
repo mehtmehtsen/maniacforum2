@@ -292,6 +292,47 @@
 				]
 			}
 		},
+		"/verify": {
+			"post": {
+				"operationId": "Verify",
+				"responses": {
+					"204": {
+						"description": "No content"
+					},
+					"422": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"reason": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"reason"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Email verification for newly registered users",
+				"security": [],
+				"parameters": [
+					{
+						"description": "from the link that got sent to the user's email address.",
+						"in": "query",
+						"name": "token",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/threads/{boardId}": {
 			"get": {
 				"operationId": "GetThreads",
