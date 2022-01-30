@@ -8,9 +8,10 @@ import { ApiModule } from './services/api/api.module';
 import { BaseService } from './services/api/base-service';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { ForumComponent } from './forum/forum.component';
+import { VerifyComponent } from './user/verify/verify.component';
 
 @NgModule({
-  declarations: [AppComponent, RegistrationComponent, ForumComponent],
+  declarations: [AppComponent, RegistrationComponent, ForumComponent, VerifyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

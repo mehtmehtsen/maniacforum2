@@ -92,10 +92,11 @@ export class SignupService {
           [r.id, token, new Date()]
         ).then(() => {
           const mailService = new MailService();
+          const encodedToken = encodeURIComponent(token);
           mailService.send(
             email,
             "M!2: Schönen Dank fürs Registrieren",
-            `Klicke diesen Link, um deine Email-Adresse zu verifizieren: http://localhost:4200/verify/${token}`
+            `Klicke diesen Link, um deine Email-Adresse zu verifizieren: http://localhost:4200/verify/${encodedToken}`
           );
         });
       })
