@@ -259,9 +259,11 @@
 						}
 					}
 				},
+				"description": "Initial sign up for new users. User will have to verify email address\nby clicking the link that got sent to it.",
 				"security": [],
 				"parameters": [
 					{
+						"description": "user's email address. Mustn't be present in DB for it to be accepted.",
 						"in": "query",
 						"name": "email",
 						"required": true,
@@ -270,6 +272,7 @@
 						}
 					},
 					{
+						"description": "desired username. Must be 3-16 chars and not already present in DB",
 						"in": "query",
 						"name": "username",
 						"required": true,
@@ -278,6 +281,7 @@
 						}
 					},
 					{
+						"description": "password. Minimum length of 7 chars.",
 						"in": "query",
 						"name": "password",
 						"required": true,
