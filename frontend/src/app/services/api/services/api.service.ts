@@ -193,14 +193,29 @@ export class ApiService extends BaseService {
   static readonly SignupPath = '/signup';
 
   /**
+   * Initial sign up for new users. User will have to verify email address
+   * by clicking the link that got sent to it.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `signup()` instead.
    *
    * This method doesn't expect any request body.
    */
   signup$Response(params: {
+
+    /**
+     * users email address. Mustn&#x27;t be present in DB for it to be accepted.
+     */
     email: string;
+
+    /**
+     * desired username. Must be 3-16 chars and not already present in DB
+     */
     username: string;
+
+    /**
+     * password. Minimum length of 7 chars.
+     */
     password: string;
   }): Observable<StrictHttpResponse<void>> {
 
@@ -223,18 +238,91 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Initial sign up for new users. User will have to verify email address
+   * by clicking the link that got sent to it.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `signup$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   signup(params: {
+
+    /**
+     * users email address. Mustn&#x27;t be present in DB for it to be accepted.
+     */
     email: string;
+
+    /**
+     * desired username. Must be 3-16 chars and not already present in DB
+     */
     username: string;
+
+    /**
+     * password. Minimum length of 7 chars.
+     */
     password: string;
   }): Observable<void> {
 
     return this.signup$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation verify
+   */
+  static readonly VerifyPath = '/verify';
+
+  /**
+   * Email verification for newly registered users
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `verify()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  verify$Response(params: {
+
+    /**
+     * from the link that got sent to the user&#x27;s email address.
+     */
+    token: string;
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.VerifyPath, 'post');
+    if (params) {
+      rb.query('token', params.token, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Email verification for newly registered users
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `verify$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  verify(params: {
+
+    /**
+     * from the link that got sent to the user&#x27;s email address.
+     */
+    token: string;
+  }): Observable<void> {
+
+    return this.verify$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

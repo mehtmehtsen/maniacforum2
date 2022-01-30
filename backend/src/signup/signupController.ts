@@ -6,7 +6,7 @@ export class SignupController extends Controller {
   /**
    * Initial sign up for new users. User will have to verify email address
    * by clicking the link that got sent to it.
-   * @param email user's email address. Mustn't be present in DB for it to be accepted.
+   * @param email users email address. Mustn't be present in DB for it to be accepted.
    * @param username desired username. Must be 3-16 chars and not already present in DB
    * @param password password. Minimum length of 7 chars.
    */

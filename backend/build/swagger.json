@@ -263,7 +263,7 @@
 				"security": [],
 				"parameters": [
 					{
-						"description": "user's email address. Mustn't be present in DB for it to be accepted.",
+						"description": "users email address. Mustn't be present in DB for it to be accepted.",
 						"in": "query",
 						"name": "email",
 						"required": true,
