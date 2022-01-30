@@ -7,12 +7,25 @@ export class VerifyService {
     validationErrorResponse: TsoaResponse<422, { reason: string }>
   ): Promise<void> {
     await pg
-      .oneOrNone(`SELECT * FROM user_validation WHERE hash = '$1'`, [token])
+      .oneOrNone(`SELECT * FROM user_validation WHERE hash = $1`, [token])
       .then(async (r) => {
-        // console.log(r);
-        if (r.length === 0) {
-          return validationErrorResponse(422, { reason: "Token not found" });
+        if (r === null) {
+          return validationErrorResponse(422, {
+            reason: "Token not found. Did you already use it?",
+          });
         }
+
+        // set user to active
+        await pg
+          .none(`UPDATE users SET active = true WHERE id = $1`, [r.user_id])
+          .then(async (r) => {
+            console.log(r);
+          });
+
+        // remove user_validation entry
+        await pg.none(`DELETE FROM user_validation WHERE user_id = $1`, [
+          r.user_id,
+        ]);
       });
   }
 }

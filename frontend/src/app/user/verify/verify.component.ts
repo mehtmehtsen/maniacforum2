@@ -23,7 +23,10 @@ export class VerifyComponent implements OnInit {
       console.error('No token found in URI');
       return;
     }
-    // this.apiService.
-    console.log(this.token);
+    this.apiService.verify({ token: this.token }).subscribe((r) => {
+      if (r !== null) {
+        console.error(r);
+      }
+    });
   }
 }
